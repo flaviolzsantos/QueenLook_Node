@@ -1,0 +1,12 @@
+/* BEGIN css_box */
+#big-video-wrap img {
+    height: 100% !important;
+    max-width: none !important;
+    position: fixed;
+    width: auto !important;
+}
+@media (max-width:580px) {
+.port-item{width:100%;}
+}
+.footer{margin:0;}
+/* END css_box */

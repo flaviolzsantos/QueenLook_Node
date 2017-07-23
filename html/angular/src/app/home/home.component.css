@@ -1,0 +1,13 @@
+﻿#toast-container {
+  position: absolute;
+  width: 300px;
+}
+
+.toast-top-center, .toast-bottom-center {
+  left: 50%;
+  margin-left: -150px;
+}
+
+.toast-top-full-width, .toast-bottom-full-width {
+  width: 100% !important;
+}

@@ -1,0 +1,100 @@
+﻿
+Teste de input : {{testeInput}}
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+        <div class="form-group">
+            <label>Título</label>
+            <input [(value)]="modelo.Titulo" (input)="modelo.Titulo = $event.target.value" class="form-control" /> 
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="form-group">
+            <label>Conteudo</label>
+            <input [(value)]="modelo.Conteudo" (input)="modelo.Conteudo = $event.target.value" class="form-control" />
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="form-group">
+        <label>Imagem</label>
+        <input type="file" id="imagem" (change)="onChange($event)" class="form-control" />
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3" style="margin-top:33px;">
+        <div class="form-group">
+          <button type="button" id="envia" (click)="cadastrar()" class="btn btn-default" >
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          </button>
+        </div>
+    </div>
+
+    
+    
+</div>
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+    <section>
+        <table class="table table-striped datatable table-nowrap">
+            <thead>
+                <tr>
+                    <th width="40%">Título</th>
+                    <th width="40%">Conteúdo</th>
+                    <th>Ativo</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="{{valor.Id}}" *ngFor= "let valor of listaValores">                    
+                    <td>{{valor.Titulo}}</td>
+                    <td>{{valor.Conteudo}}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <a href="javascript:void(0);">
+                          <i (click)="AtivarOuDesativatItem(valor.Id)" aria-hidden="true" class="{{valor.Ativo ? 'fa fa-check' : 'fa fa-times' }}"></i>
+                        </a>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">                            
+                            <a href="javascript:void(0);" (click)="DeletarHome(valor.Id)"> 
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </td>
+                  <td class="text-right">
+                    <div class="btn-group">
+                      <a href="javascript:void(0);">
+                        <i class="fa fa-pencil-square-o" (click)="EditarItem(valor)" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+  </div>
+</div>
+<script>
+    var form;
+  $('#imagem').change(function (event) {
+        form = new FormData();
+        form.append('fileUpload', event.target.files[0]); // para apenas 1 arquivo
+        //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
+    });
+
+  $('#envia').click(function () {
+    console.log(form);
+        //$.ajax({
+        //    url: 'URL SERVER', // Url do lado server que vai receber o arquivo
+        //    data: form,
+        //    processData: false,
+        //    contentType: false,
+        //    type: 'POST',
+        //    success: function (data) {
+        //        // utilizar o retorno
+        //    }
+        //});
+    });
+</script>
+
+
