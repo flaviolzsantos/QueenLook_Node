@@ -5,6 +5,10 @@
   "private": true,
   "dependencies": {
     "express": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "mongodb": "~2.2.30"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
