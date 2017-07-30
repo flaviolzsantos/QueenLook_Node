@@ -6,5 +6,5 @@
 export const environment = {
     production: false,
     basic_auth_token: "aaa",
-    apiEndpoint: "http://localhost:1521/"
+    apiEndpoint: "http://localhost/"
 };

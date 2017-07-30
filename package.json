@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "*",
     "body-parser": "*",
-    "mongodb": "~2.2.30"
+    "mongodb": "~2.2.30",
+    "cors":"~2.8.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

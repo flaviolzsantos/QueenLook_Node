@@ -44,19 +44,19 @@ Teste de input : {{testeInput}}
                 </tr>
             </thead>
             <tbody>
-                <tr id="{{valor.Id}}" *ngFor= "let valor of listaValores">                    
+                <tr id="{{valor._id}}" *ngFor= "let valor of listaValores">                    
                     <td>{{valor.Titulo}}</td>
                     <td>{{valor.Conteudo}}</td>
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="javascript:void(0);">
-                          <i (click)="AtivarOuDesativatItem(valor.Id)" aria-hidden="true" class="{{valor.Ativo ? 'fa fa-check' : 'fa fa-times' }}"></i>
+                          <i (click)="AtivarOuDesativatItem(valor._id)" aria-hidden="true" class="{{valor.Ativo ? 'fa fa-check' : 'fa fa-times' }}"></i>
                         </a>
                       </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">                            
-                            <a href="javascript:void(0);" (click)="DeletarHome(valor.Id)"> 
+                            <a href="javascript:void(0);" (click)="DeletarHome(valor._id)"> 
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
                         </div>

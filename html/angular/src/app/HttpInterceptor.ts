@@ -29,7 +29,7 @@ export class HttpInterceptor {
     }
 
     post(url: string, options?: any) {
-        return $.ajax(
+        var retorno = $.ajax(
             {
                 type: "POST",
                 url: this.getFullUrl(url),
@@ -37,7 +37,18 @@ export class HttpInterceptor {
                 dataType: "json",
                 async: false
             });
-
+        return retorno.responseJSON; 
+    }
+    
+   
+    delete(url: string, options?: any){
+        return $.ajax({
+                type: "DELETE",
+                url: this.getFullUrl(url),
+                data: this.requestOptions(options),
+                dataType: "json",
+                async: false
+            });
     }
 
     

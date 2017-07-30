@@ -1,5 +1,6 @@
 ﻿export class Home{
-    Id : number = 0;
+    _id : string = "";
     Titulo : string = "";
     Conteudo: string = "";
+    Ativo: boolean = true;
 }

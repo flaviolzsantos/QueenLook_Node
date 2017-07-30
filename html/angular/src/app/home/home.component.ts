@@ -25,12 +25,13 @@ export class HomeComponent implements OnInit {
     }
 
     public cadastrar() {
-        this.enviarImagem();
-        //this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
-        //this.ListaValores();
-        //this.modelo.Titulo = "";
-        //this.modelo.Conteudo = "";
-        //this.modelo.Id = 0;
+        //this.enviarImagem();
+        this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
+        
+        this.ListaValores();
+        this.modelo.Titulo = "";
+        this.modelo.Conteudo = "";
+        this.modelo._id = "";
     }
 
     public DeletarHome(id) {
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
         var metodoRetorno = this.homeSrv.AtivarOuDeletar(id);
 
         if (metodoRetorno.status == 500) 
-            this.toastr.error(metodoRetorno.responseJSON.ExceptionMessage);       
+            this.toastr.error(metodoRetorno.message);       
 
         this.ListaValores();
     }
@@ -60,8 +61,9 @@ export class HomeComponent implements OnInit {
 
 
     mostrarMensagem(metodoRetorno: any, mensagem: string) {
+        
         if (metodoRetorno.status == 500) {
-            this.toastr.error(metodoRetorno.responseJSON.ExceptionMessage);
+            this.toastr.error(metodoRetorno.message);
         } else {
             this.toastr.success(mensagem);
         }

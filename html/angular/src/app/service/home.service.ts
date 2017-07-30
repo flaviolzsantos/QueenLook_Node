@@ -19,19 +19,19 @@ export class HomeService {
 
     
     CadastrarInfo(modelo: Home) {
-        return this.http.post("Areas/Admin/Home/CadastrarHome", modelo);
+        return this.http.post("Admin/Home/CadastrarHome", modelo);
     }
 
     GetInfo() {
-        return this.http.get('Areas/Admin/Home/ObterListaHome');       
+        return this.http.get('Admin/Home/ObterListaHome');       
     }
 
-    DeletarHome(id) {        
-        return this.http.post('/Areas/Admin/Home/Deletar', { "" : id });
+    DeletarHome(id) {  
+        return this.http.delete('Admin/Home/Deletar', {id : id} );
     }
 
     AtivarOuDeletar(id) {
-        return this.http.post('/Areas/Admin/Home/AtivarOuDesativar', { "": id });
+        return this.http.post('Admin/Home/AtivarOuDesativar', { id: id });
     }
 
     postWithFile( files: File[]) {
