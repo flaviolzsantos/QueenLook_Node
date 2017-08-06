@@ -8,15 +8,19 @@ exports.Listar = function(call){
 }
 
 exports.Salvar = function(obj,call){
+    console.log('antes validar');
     validarCadastro(true,(obj["_id"] != ''), function(erro){
-        
+        console.log('depois validar');
         if(erro)
             call(erro);
         else{
+            console.log('antes novo');
             if(obj["_id"] == ''){//Novo
                 delete obj["_id"];    
-                obj.Ativo = true;        
+                obj.Ativo = true;  
+                console.log('entrou novo');      
                 repositorio.Salvar(nomeObjeto,obj,function(ret){
+                    console.log('salvou');
                     call();
                 }); 
             }else{
