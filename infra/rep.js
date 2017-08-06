@@ -21,7 +21,9 @@ Repositorio.prototype.Obter = function(callback, nomeColecao) {
 
 Repositorio.prototype.Salvar = function(nomeEntidade, obj, callback) {
   conexao.Conectar(function(db){
+    console.log(db);
     db.collection(nomeEntidade).insert(obj,function(erro, col){      
+      console.log(erro);
         callback(erro);
         db.close();
     });
