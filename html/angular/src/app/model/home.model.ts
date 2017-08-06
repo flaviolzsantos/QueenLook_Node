@@ -3,4 +3,5 @@
     Titulo : string = "";
     Conteudo: string = "";
     Ativo: boolean = true;
+    Imagem: string = "";
 }

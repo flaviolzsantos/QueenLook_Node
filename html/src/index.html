@@ -121,7 +121,7 @@
                     <div class="slider-content clearfix">
                         <!--SLIDER CAPTION START-->
                         <div class="title-caption">
-                            <h4>Sombrancelhamos</h4>
+                            <h4>Sombrancelha</h4>
                         </div>
                         <!--/.title-caption-->
                         <div id="slidecaption"></div>
@@ -1157,7 +1157,7 @@
                 jQuery.each(getHome(), function (key, value) {
                     var titulo = (value.Conteudo != undefined) ? '<h2>' + value.Titulo + ' &amp; ' + value.Conteudo + '</h2>' : '<h2>' + value.Titulo + '</h2>'
                     listaHome.push({
-                        image: 'images/backgroud/imgGrande.jpeg',
+                        image: 'images/backgroud/' + value.Imagem,
                         title: titulo
                     });
                 });
@@ -1172,7 +1172,7 @@
 
                     // Components							
                     slide_links: 'false', // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-                    slides: [ // Slideshow Images
+                    slides: listaHome/*[ // Slideshow Images
 									
 										 {
 										image: 'http://theme.ridianur.com/alamak/wp-content/uploads/2013/12/slider1.jpg',
@@ -1183,7 +1183,7 @@
 										title: '<h2>Integrity &amp; Loyal  for Customer</h2>' },  {
 										image: 'http://theme.ridianur.com/alamak/wp-content/uploads/2013/12/slider4.jpg',
 										title: '<h2>Bunch of Creative People &amp; Idea</h2>' }, 									
-								]
+								]*/
 
 
                 });

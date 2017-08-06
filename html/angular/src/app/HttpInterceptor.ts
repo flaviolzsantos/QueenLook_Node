@@ -42,6 +42,20 @@ export class HttpInterceptor {
         return retorno.responseJSON; 
     }
 
+    postWithFile(url: string, options?: any) {
+        var retorno = $.ajax(
+            {
+                type: "POST",
+                url: this.getFullUrl(url),
+                data: this.requestOptions(options),
+                //dataType: "json",
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
+                async: false
+            });
+        return retorno.responseJSON; 
+    }
+
    /* postWithFiles(url: string,files: File[], options?: any) {
         let headers = new Headers();
         let formData: FormData = new FormData();

@@ -69,16 +69,11 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    enviarImagem() {
-
-       
-
-    }
+   
 
     onChange(event) {
         let file = event.srcElement.files;
-        console.log(file)
-        this.homeSrv.postWithFile(file);
+        this.modelo.Imagem = this.homeSrv.postWithFile(file).nomeArquivo;
     }
 
 

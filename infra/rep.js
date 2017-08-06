@@ -4,7 +4,7 @@ var conexao = require('./conexao'),
 Repositorio = function() {};
 
 
-Repositorio.prototype.Obter = function(callback, nomeColecao) {
+Repositorio.prototype.Obter = function(nomeColecao, callback) {
   
   conexao.Conectar(function(db){
     db.collection(nomeColecao, function(error, collection) {    
@@ -19,11 +19,24 @@ Repositorio.prototype.Obter = function(callback, nomeColecao) {
   });
 };
 
+Repositorio.prototype.ObterComFiltro = function(nomeColecao, filtro, callback) {
+  
+  conexao.Conectar(function(db){
+    db.collection(nomeColecao, function(error, collection) {    
+      if( error ) callback(error);
+      else {
+        collection.find(filtro).toArray(function(err, itens){
+            callback(null, itens);
+            db.close();
+        });      
+      }
+    });
+  });
+};
+
 Repositorio.prototype.Salvar = function(nomeEntidade, obj, callback) {
   conexao.Conectar(function(db){
-    console.log(db);
     db.collection(nomeEntidade).insert(obj,function(erro, col){      
-      console.log(erro);
         callback(erro);
         db.close();
     });

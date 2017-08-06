@@ -1,26 +1,45 @@
-var Repositorio = require('../../infra/rep').Repositorio
-let nomeObjeto = "Home";
+let Repositorio = require('../../infra/rep').Repositorio,
+multer  =   require('multer'),
+nomeObjeto = "Home";
 
-var repositorio = new Repositorio();
+var storageHome =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    let caminho = __dirname.substring(0, __dirname.length - '\servico\adm'.length - 1);  
+    callback(null, caminho + '/html/src/images/backgroud');
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + "-" + file.originalname);
+  }
+});
 
-exports.Listar = function(call){    
-    repositorio.Obter(call,nomeObjeto);
+let uploadHome = multer({ storage : storageHome }).single('files');
+
+let repositorio = new Repositorio();
+
+exports.Listar = function(req, res){    
+    repositorio.Obter(nomeObjeto,function(erro,lista){
+        res.send(lista);
+    });
 }
 
-exports.Salvar = function(obj,call){
-    console.log('antes validar');
+exports.Salvar = function(req,res){
+
+    let obj = req.body;
+    let call = function(erro){
+        if(erro){
+            res.send({status:500, message: erro});
+        }else
+            res.send({status:200, message: "Salvo com sucesso"});
+    };
+
     validarCadastro(true,(obj["_id"] != ''), function(erro){
-        console.log('depois validar');
         if(erro)
             call(erro);
         else{
-            console.log('antes novo');
             if(obj["_id"] == ''){//Novo
                 delete obj["_id"];    
                 obj.Ativo = true;  
-                console.log('entrou novo');      
                 repositorio.Salvar(nomeObjeto,obj,function(ret){
-                    console.log('salvou');
                     call();
                 }); 
             }else{
@@ -33,13 +52,25 @@ exports.Salvar = function(obj,call){
     });
 }
 
-exports.Deletar = function(id, call){
+exports.Deletar = function(req,res){
+    let id = req.body.id;
     repositorio.Deletar(id, nomeObjeto, function(erro, result){
-        call(erro,result);
+        if(erro)
+            res.send({status:500, message: erro});
+        else
+            res.send({status:200, message: "Deletado com sucesso"});
     });
 }
 
-exports.AtivarOuDesativar = function(id, call){
+exports.AtivarOuDesativar = function(req, res){
+    let id = req.body.id;
+    let call = function(erro, result){
+        if(erro)
+            res.send({status:500, message: erro});
+        else
+            res.send({status:200, message: result}); 
+    };
+
     repositorio.ObterDocumentoPorId(nomeObjeto, id, function(erro, row){
         validarCadastro(!row.Ativo,false,function(erro){
             if(erro)
@@ -52,6 +83,15 @@ exports.AtivarOuDesativar = function(id, call){
             }
         });
     });
+}
+
+exports.UploadImagem = function(req, res){
+    uploadHome(req, res, function (err) {
+    if (err)
+        res.send({status:500, message :err});
+    else
+        res.send({status: 200, nomeArquivo : req.file.filename});
+  });
 }
 
 function validarCadastro(estaAtivando, invalidaValidacao, call){

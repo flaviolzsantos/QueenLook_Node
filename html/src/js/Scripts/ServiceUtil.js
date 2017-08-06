@@ -1,6 +1,6 @@
 ﻿function ServiceUtil() {
 
-    var urlRaiz = "http://localhost:1234/";
+    var urlRaiz = "http://localhost:3000/";
 
     this.get = function (url) {
 

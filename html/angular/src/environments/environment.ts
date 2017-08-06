@@ -6,5 +6,6 @@
 export const environment = {
     production: false,
     basic_auth_token: "aaa",
-    apiEndpoint: "http://www.queenlook.com.br/"
+    //apiEndpoint: "http://www.queenlook.com.br/"
+    apiEndpoint: "http://localhost:3000/"
 };

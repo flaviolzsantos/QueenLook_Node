@@ -39,11 +39,8 @@ export class HomeService {
         let headers = new Headers();
         let formData: FormData = new FormData();
         formData.append('files', files[0], files[0].name);
-        console.log(formData);
-        this.http.post('Admin/Home/UploadFile', formData);
-        //Admin/Home/UploadFile
 
-        
+        return this.http.postWithFile('Admin/Home/UploadFile', formData);
     }
 
 }
