@@ -1,8 +1,19 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    srvHome = require('./servico/adm/srvHome');
+    srvHome = require('./servico/adm/srvHome'),
+    multer  =   require('multer'),
+    multer  =   require('multer');
 
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, __dirname+'/html/src/images/backgroud');
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + "-" + file.originalname);
+  }
+});
 
+var upload = multer({ storage : storage }).single('files');
 var app = express()
 app.use(bodyParser.urlencoded({
     extended: true
@@ -66,5 +77,17 @@ app.post('/Admin/Home/AtivarOuDesativar', function(req, res){
             res.send({status:200, message: result}); 
     });
 });
+
+app.post('/Admin/Home/UploadFile',function(req,res){
+    upload(req, res, function (err) {
+    if (err) {
+        //console.log(req.file);
+        res.send(err);
+        return;
+    }
+    console.log(req.file);
+    res.send('Profile ok');
+  });
+});
   
-app.listen(80);
+app.listen(3000);

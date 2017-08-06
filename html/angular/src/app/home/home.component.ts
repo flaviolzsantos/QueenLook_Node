@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit {
 
     onChange(event) {
         let file = event.srcElement.files;
+        console.log(file)
         this.homeSrv.postWithFile(file);
     }
 

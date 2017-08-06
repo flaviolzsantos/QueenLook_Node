@@ -34,11 +34,31 @@ export class HttpInterceptor {
                 type: "POST",
                 url: this.getFullUrl(url),
                 data: this.requestOptions(options),
-                dataType: "json",
+                //dataType: "json",
+                processData: false,  // tell jQuery not to process the data
+                contentType: false,  // tell jQuery not to set contentType
                 async: false
             });
         return retorno.responseJSON; 
     }
+
+   /* postWithFiles(url: string,files: File[], options?: any) {
+        let headers = new Headers();
+        let formData: FormData = new FormData();
+        formData.append('files', files[0], files[0].name);
+
+        $.ajax({
+            url: this.getFullUrl(url),
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                console.log(data);
+                alert(data);
+            }
+        });
+    }*/
     
    
     delete(url: string, options?: any){
