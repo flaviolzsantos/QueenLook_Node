@@ -251,8 +251,8 @@ var HttpInterceptor = (function () {
             url: this.getFullUrl(url),
             data: this.requestOptions(options),
             dataType: "json",
-            processData: false,
-            contentType: false,
+            //processData: false,  // tell jQuery not to process the data
+            //contentType: false,  // tell jQuery not to set contentType
             async: false
         });
         return retorno.responseJSON;
