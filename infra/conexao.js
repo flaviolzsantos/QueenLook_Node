@@ -3,7 +3,7 @@ var Db = require('mongodb').Db,
   MongoClient = require('mongodb').MongoClient;
 
 exports.Conectar = function(cbConexao){    
-    MongoClient.connect('mongodb://mongo_queen:27017', function(erro, dataBase){ 
+    MongoClient.connect('mongodb://mongo_queen:27017/queen', function(erro, dataBase){ 
         cbConexao(dataBase);
     });
 };
