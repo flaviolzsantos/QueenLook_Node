@@ -250,7 +250,7 @@ var HttpInterceptor = (function () {
             type: "POST",
             url: this.getFullUrl(url),
             data: this.requestOptions(options),
-            //dataType: "json",
+            dataType: "json",
             processData: false,
             contentType: false,
             async: false

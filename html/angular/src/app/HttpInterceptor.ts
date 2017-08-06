@@ -34,7 +34,7 @@ export class HttpInterceptor {
                 type: "POST",
                 url: this.getFullUrl(url),
                 data: this.requestOptions(options),
-                //dataType: "json",
+                dataType: "json",
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,  // tell jQuery not to set contentType
                 async: false
