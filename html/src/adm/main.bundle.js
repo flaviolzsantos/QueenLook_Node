@@ -429,8 +429,8 @@ var _a;
 var environment = {
     production: false,
     basic_auth_token: "aaa",
-    //apiEndpoint: "http://www.queenlook.com.br/"
-    apiEndpoint: "http://localhost:3000/"
+    apiEndpoint: "http://www.queenlook.com.br/"
+    //apiEndpoint: "http://localhost:3000/"
 };
 //# sourceMappingURL=environment.js.map
 
