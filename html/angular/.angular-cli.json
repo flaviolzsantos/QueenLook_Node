@@ -7,7 +7,7 @@
     {
       "root": "src",
       "outDir": "../src/adm",
-      "deployUrl": "http://wwww.queenlook.com.br/adm",
+      "deployUrl": "http://www.queenlook.com.br/adm",
       "assets": [
         "assets",
         "favicon.ico"
