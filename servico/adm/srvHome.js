@@ -16,84 +16,6 @@ let uploadHome = multer({ storage : storageHome }).single('files');
 
 let repositorio = new Repositorio();
 
-exports.Listar = function(req, res){    
-    repositorio.Obter(nomeObjeto,function(erro,lista){
-        res.send(lista);
-    });
-}
-
-exports.Salvar = function(req,res){
-
-    let obj = req.body;
-    let call = function(erro){
-        if(erro){
-            res.send({status:500, message: erro});
-        }else
-            res.send({status:200, message: "Salvo com sucesso"});
-    };
-
-    validarCadastro(true,(obj["_id"] != ''), function(erro){
-        if(erro)
-            call(erro);
-        else{
-            if(obj["_id"] == ''){//Novo
-                delete obj["_id"];    
-                obj.Ativo = true;  
-                repositorio.Salvar(nomeObjeto,obj,function(ret){
-                    call();
-                }); 
-            }else{
-                obj.Ativo = (obj.Ativo == 'true');
-                repositorio.Atualizar(nomeObjeto,obj,function(ret){
-                    call();
-                })
-            }
-        }
-    });
-}
-
-exports.Deletar = function(req,res){
-    let id = req.body.id;
-    repositorio.Deletar(id, nomeObjeto, function(erro, result){
-        if(erro)
-            res.send({status:500, message: erro});
-        else
-            res.send({status:200, message: "Deletado com sucesso"});
-    });
-}
-
-exports.AtivarOuDesativar = function(req, res){
-    let id = req.body.id;
-    let call = function(erro, result){
-        if(erro)
-            res.send({status:500, message: erro});
-        else
-            res.send({status:200, message: result}); 
-    };
-
-    repositorio.ObterDocumentoPorId(nomeObjeto, id, function(erro, row){
-        validarCadastro(!row.Ativo,false,function(erro){
-            if(erro)
-                call(erro);
-            else{               
-                row.Ativo = !row.Ativo;
-                repositorio.Atualizar(nomeObjeto,row,function(ret){
-                    call();
-                });
-            }
-        });
-    });
-}
-
-exports.UploadImagem = function(req, res){
-    uploadHome(req, res, function (err) {
-    if (err)
-        res.send({status:500, message :err});
-    else
-        res.send({status: 200, nomeArquivo : req.file.filename});
-  });
-}
-
 function validarCadastro(estaAtivando, invalidaValidacao, call){
     repositorio.ObterQuantidade(nomeObjeto,{Ativo:true},function(erro,quantidade){
         if(quantidade == 3 && estaAtivando && !invalidaValidacao)
@@ -102,4 +24,86 @@ function validarCadastro(estaAtivando, invalidaValidacao, call){
     });
     
 }
+
+module.exports = function(app){
+
+    app.get('/Admin/Home/ObterListaHome', function(req, res){    
+        repositorio.Obter(nomeObjeto,function(erro,lista){
+            res.send(lista);
+        })
+    });
+
+    app.post('/Admin/Home/CadastrarHome',function(req,res){
+
+        let obj = req.body;
+        let call = function(erro){
+            if(erro){
+                res.send({status:500, message: erro});
+            }else
+                res.send({status:200, message: "Salvo com sucesso"});
+        };
+
+        validarCadastro(true,(obj["_id"] != ''), function(erro){
+            if(erro)
+                call(erro);
+            else{
+                if(obj["_id"] == ''){//Novo
+                    delete obj["_id"];    
+                    obj.Ativo = true;  
+                    repositorio.Salvar(nomeObjeto,obj,function(ret){
+                        call();
+                    }); 
+                }else{
+                    obj.Ativo = (obj.Ativo == 'true');
+                    repositorio.Atualizar(nomeObjeto,obj,function(ret){
+                        call();
+                    })
+                }
+            }
+        });
+    });
+
+    app.delete('/Admin/Home/Deletar',function(req,res){
+        let id = req.body.id;
+        repositorio.Deletar(id, nomeObjeto, function(erro, result){
+            if(erro)
+                res.send({status:500, message: erro});
+            else
+                res.send({status:200, message: "Deletado com sucesso"});
+        });
+    });
+
+    app.post('/Admin/Home/AtivarOuDesativar', function(req, res){
+        let id = req.body.id;
+        let call = function(erro, result){
+            if(erro)
+                res.send({status:500, message: erro});
+            else
+                res.send({status:200, message: result}); 
+        };
+
+        repositorio.ObterDocumentoPorId(nomeObjeto, id, function(erro, row){
+            validarCadastro(!row.Ativo,false,function(erro){
+                if(erro)
+                    call(erro);
+                else{               
+                    row.Ativo = !row.Ativo;
+                    repositorio.Atualizar(nomeObjeto,row,function(ret){
+                        call();
+                    });
+                }
+            });
+        });
+    });
+
+    app.post('/Admin/Home/UploadFile',function(req, res){
+        uploadHome(req, res, function (err) {
+        if (err)
+            res.send({status:500, message :err});
+        else
+            res.send({status: 200, nomeArquivo : req.file.filename});
+        });
+    });
+}
+
 

@@ -1,6 +1,7 @@
 ﻿function ServiceUtil() {
 
-    var urlRaiz = "http://www.queenlook.com.br/";
+    //var urlRaiz = "http://www.queenlook.com.br/";
+    var urlRaiz = "http://localhost:3000/";
 
     this.get = function (url) {
 
