@@ -12,10 +12,8 @@ import * as $ from 'jquery';
 export class HomeComponent implements OnInit {
     modelo: Home;
     homeSrv: HomeService;
-
-
+    
     listaValores: any;
-    @Input() testeInput: string;
     constructor(homeService: HomeService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         
         this.toastr.setRootViewContainerRef(vcr);

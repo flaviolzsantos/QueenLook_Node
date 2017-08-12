@@ -1,5 +1,4 @@
 ﻿
-Teste de input : {{testeInput}}
 <div class="row">
     <div class="col-lg-4 col-md-4">
         <div class="form-group">
@@ -26,10 +25,8 @@ Teste de input : {{testeInput}}
           </button>
         </div>
     </div>
-
-    
-    
 </div>
+
 <div class="row">
   <div class="col-lg-6 col-md-6">
     <section>
@@ -74,27 +71,5 @@ Teste de input : {{testeInput}}
     </section>
   </div>
 </div>
-<script>
-    var form;
-  $('#imagem').change(function (event) {
-        form = new FormData();
-        form.append('fileUpload', event.target.files[0]); // para apenas 1 arquivo
-        //var name = event.target.files[0].content.name; // para capturar o nome do arquivo com sua extenção
-    });
-
-  $('#envia').click(function () {
-    console.log(form);
-        //$.ajax({
-        //    url: 'URL SERVER', // Url do lado server que vai receber o arquivo
-        //    data: form,
-        //    processData: false,
-        //    contentType: false,
-        //    type: 'POST',
-        //    success: function (data) {
-        //        // utilizar o retorno
-        //    }
-        //});
-    });
-</script>
 
 

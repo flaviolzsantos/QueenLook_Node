@@ -1,0 +1,23 @@
+<h2>Portifólio</h2>
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+        <div class="form-group">
+            <label>Título</label>
+            <input [(value)]="modelo.Titulo" (input)="modelo.Titulo = $event.target.value"  class="form-control" /> 
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="form-group">
+            <label>SubTitulo</label>
+            <input [(value)]="modelo.SubTitulo" (input)="modelo.SubTitulo = $event.target.value" class="form-control" />
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-3" style="margin-top:33px;">
+        <div class="form-group">
+          <button type="button" id="envia" (click)="salvar()" class="btn btn-default" >
+            <span >Salvar</span>
+          </button>
+        </div>
+    </div>
+</div>

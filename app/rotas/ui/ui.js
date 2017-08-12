@@ -1,4 +1,4 @@
-let Repositorio = require('../../infra/rep').Repositorio,
+let Repositorio = require('../../../config/repositorio').Repositorio,
 nomeObjeto = "Home";
 
 let repositorio = new Repositorio();

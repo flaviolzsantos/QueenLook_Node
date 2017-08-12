@@ -1,5 +1,6 @@
-var app = require('./infra/app.js'),
-    srvHome = require('./servico/adm/srvHome')(app),
-    srvUi = require('./servico/ui/srvUi')(app);
+var app = require('./config/app.js'),
+    homeRota = require('./app/rotas/adm/home')(app),
+    portifolioRota = require('./app/rotas/adm/portifolio')(app),
+    uiRota = require('./app/rotas/ui/ui')(app);
 
 app.listen(3000);
