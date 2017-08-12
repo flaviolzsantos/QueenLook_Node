@@ -3,13 +3,13 @@
     <div class="col-lg-4 col-md-4">
         <div class="form-group">
             <label>Título</label>
-            <input [(value)]="modelo.Titulo" (input)="modelo.Titulo = $event.target.value"  class="form-control" /> 
+            <input (ngModel)="modelo?.Titulo" (ngModelChange)="modelo.Titulo = $event"  class="form-control" /> 
         </div>
     </div>
     <div class="col-lg-4 col-md-4">
       <div class="form-group">
             <label>SubTitulo</label>
-            <input [(value)]="modelo.SubTitulo" (input)="modelo.SubTitulo = $event.target.value" class="form-control" />
+            <input (ngModel)="modelo?.SubTitulo" (ngModelChange)="modelo.SubTitulo = $event" class="form-control" />
         </div>
     </div>
     
