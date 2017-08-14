@@ -36,6 +36,7 @@ Repositorio.prototype.ObterComFiltro = function(nomeColecao, filtro, callback) {
 
 Repositorio.prototype.Salvar = function(nomeEntidade, obj, callback) {
   conexao.Conectar(function(db){
+    delete obj["_id"]; 
     db.collection(nomeEntidade).insert(obj,function(erro, col){      
         callback(erro);
         db.close();
@@ -75,6 +76,15 @@ Repositorio.prototype.ObterQuantidade = function(nomeEntidade, filtro, callback)
 Repositorio.prototype.ObterDocumentoPorId = function(nomeEntidade, id, callback){
   conexao.Conectar(function(db){
     db.collection(nomeEntidade).findOne({_id : ObjectID(id)},function(erro, row){
+      callback(erro, row);
+      db.close();
+    });
+  });
+}
+
+Repositorio.prototype.ObterUnicoDocumento = function(nomeEntidade, callback){
+  conexao.Conectar(function(db){
+    db.collection(nomeEntidade).findOne({},function(erro, row){
       callback(erro, row);
       db.close();
     });

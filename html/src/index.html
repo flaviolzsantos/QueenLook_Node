@@ -151,10 +151,13 @@
     <section id="portfolio" class="clearfix content">
         <div class="container">
             <div class="title-content clearfix">
-                <div class="title-inner">
-                    <h3>Our Recent Works</h3>
-                    <p>What we've done so far</p>
-                </div>
+                <div id="portifolio"></div>
+                <script id="portifolioScript" type="text/x-handlebars-template">
+                    <div class="title-inner">
+                        <h3>{{Titulo}}</h3>
+                        <p>{{SubTitulo}}</p>
+                    </div>
+                </script>
                 <!--/.title-inner-->
             </div>
             <!--/.title-content-->
@@ -176,14 +179,12 @@
                         <a class="box-40 hovers bwWrapper" data-rel="prettyPhoto" href="images/pic1.jpg">
                             <img width="600" height="600" src="images/pic1-600x600.jpg" class="attachment-portfolio-image size-portfolio-image wp-post-image"
                                 alt="pic1" srcset="images/pic1-600x600.jpg 600w, images/pic1-150x150.jpg 150w, images/pic1-768x768.jpg 768w, images/pic1-300x300.jpg 300w"
-                                sizes="(max-width: 600px) 100vw, 600px" /> </a>
-                        <a class="more" href="#" data-link="http://theme.ridianur.com/alamak/portfolio/set-phasers-stun/"><span class="hov-desc">View Detail</span><i class="fa fa-chain"></i></a>
+                                sizes="(max-width: 600px) 100vw, 600px" /> </a>                        
                         <div class="padding box-60">
                             <h3>Setting Phasers</h3>
-                            <p>A young boy whose dog has just died moves into the house in whose backyard the snowman was built.
-                                Finding a photograph of the snowman the boy rebuilds him,fashioning a snow dog out of the
-                                excess snow. The trio fly &hellip;</p>
-                            <i class="cat-icon fa fa-headphones" data-link="http://theme.ridianur.com/alamak/portfolio/set-phasers-stun/"></i>
+                            <span>A young boy whose dog has just died moves into the house in whose backyard the snowman was built.
+                                Finding a photograph of the snowman the boy rebuilds him asd asdas asda asd asdasd asd asda sasd 
+                                asd asd asd</span>
                         </div>
                         <!--/.padding-->
                     </div>
@@ -1139,13 +1140,14 @@
     <script type='text/javascript' src='js/wp-embed.min.js'></script>
     <script type='text/javascript' src='js/jquery.cycle.all.min.js'></script>
     <script type='text/javascript' src='js/rotating_tweet.js'></script>
-    <script src="https://unpkg.com/vue"></script>
+    <script type='text/javascript' src='js/handlebars-v4.0.10.js'></script>
     <script src="js/Scripts/ServiceUtil.js"></script>
     <script src="js/Scripts/Servico.js"></script>
     <script type="text/javascript">
         (function ($) {
             "use strict";
             jQuery(document).ready(function ($) {
+                getPortifolio();
 
                 $(".testimonial:has(>li:eq(1)),.norotatingtweets:has(>div:eq(1))").list_ticker({
                     speed: 6000,

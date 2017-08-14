@@ -3,13 +3,13 @@
     <div class="col-lg-4 col-md-4">
         <div class="form-group">
             <label>Título</label>
-            <input (ngModel)="modelo?.Titulo" (ngModelChange)="modelo.Titulo = $event"  class="form-control" /> 
+            <input [(value)]="modeloPortifolio.Titulo" (input)="modeloPortifolio.Titulo = $event.target.value"  class="form-control" /> 
         </div>
     </div>
     <div class="col-lg-4 col-md-4">
       <div class="form-group">
             <label>SubTitulo</label>
-            <input (ngModel)="modelo?.SubTitulo" (ngModelChange)="modelo.SubTitulo = $event" class="form-control" />
+            <input [(value)]="modeloPortifolio.SubTitulo" (input)="modeloPortifolio.SubTitulo = $event.target.value" class="form-control" />
         </div>
     </div>
     
@@ -19,5 +19,86 @@
             <span >Salvar</span>
           </button>
         </div>
+    </div>
+</div>
+
+<h2>Item Portifólio</h2>
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+        <div class="form-group">
+            <label>Título Item</label>
+            <input [(value)]="modeloPortifolioItem.Titulo" (input)="modeloPortifolioItem.Titulo = $event.target.value" class="form-control" /> 
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="form-group">
+            <label>Conteudo Item</label>
+            <input [(value)]="modeloPortifolioItem.Conteudo" (input)="modeloPortifolioItem.Conteudo = $event.target.value" class="form-control" />
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1">
+        <div class="form-group">
+            <label>Ordem</label>
+            <input [(value)]="modeloPortifolioItem.Ordem" (input)="modeloPortifolioItem.Ordem = $event.target.value" class="form-control" />
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="form-group">
+        <label>Imagem do Item</label>
+        <input name="file" type="file" (change)="onChange($event)"/>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3" style="margin-top:33px;">
+        <div class="form-group">
+            <button type="button" (click)="adicionarItem()" class="btn btn-default" >
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-9 col-md-9">
+        <section>
+            <table class="table table-striped datatable table-nowrap">
+                <thead>
+                    <tr>
+                        <th width="40%">Título</th>
+                        <th width="40%">Conteúdo</th>
+                        <th width="20%">Ordem</th>
+                        <th>Ativo</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="{{valor._id}}" *ngFor= "let valor of listaValores">                    
+                        <td>{{valor.Titulo}}</td>
+                        <td>{{valor.Conteudo}}</td>
+                        <td class="text-center">
+                        <div class="btn-group">
+                            <a href="javascript:void(0);">
+                            <i (click)="AtivarOuDesativatItem(valor._id)" aria-hidden="true" class="{{valor.Ativo ? 'fa fa-check' : 'fa fa-times' }}"></i>
+                            </a>
+                        </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="btn-group">                            
+                                <a href="javascript:void(0);" (click)="DeletarHome(valor._id)"> 
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-pencil-square-o" (click)="EditarItem(valor)" aria-hidden="true"></i>
+                        </a>
+                        </div>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
 </div>

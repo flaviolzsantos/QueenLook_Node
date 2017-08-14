@@ -158,11 +158,11 @@
 
     //reduce excerpt in portfolio
     $(".box-60 p").each(function() {
-        var excerpt = $(this).text().substr(0, 80).lastIndexOf(" ");
+        /*var excerpt = $(this).text().substr(0, 220).lastIndexOf(" ");
         var eltexTo = $(this).text();
         var title = eltexTo;
         var shortText = title.trim().substring(0, excerpt).split(" ").slice(0, -1).join(" ") + "...";
-        $(this).text(shortText);
+        $(this).text(shortText);*/
     });
 
     //fix map in tab

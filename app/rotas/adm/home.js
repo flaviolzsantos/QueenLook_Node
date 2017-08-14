@@ -4,8 +4,8 @@ nomeObjeto = "Home";
 
 var storageHome =   multer.diskStorage({
   destination: function (req, file, callback) {
-    let caminho = __dirname.substring(0, __dirname.length - '\servico\adm'.length - 1);  
-    callback(null, caminho + '/html/src/images/backgroud');
+    let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1);  
+    callback(null, caminho + 'html\\src\\images\\backgroud');
   },
   filename: function (req, file, callback) {
     callback(null, Date.now() + "-" + file.originalname);
@@ -47,8 +47,7 @@ module.exports = function(app){
             if(erro)
                 call(erro);
             else{
-                if(obj["_id"] == ''){//Novo
-                    delete obj["_id"];    
+                if(obj["_id"] == ''){//Novo                       
                     obj.Ativo = true;  
                     repositorio.Salvar(nomeObjeto,obj,function(ret){
                         call();

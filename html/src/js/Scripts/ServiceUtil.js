@@ -3,17 +3,15 @@
     //var urlRaiz = "http://www.queenlook.com.br/";
     var urlRaiz = "http://localhost:3000/";
 
-    this.get = function (url) {
+    this.get = function (url, sync) {
 
-        var retorno = jQuery.ajax(
+        return jQuery.ajax(
             {
                 type: "GET",
                 url: this.getFullUrl(url),
                 dataType: "json",
-                async: false
+                async: sync
             });
-
-        return retorno.responseJSON;
     };
 
 
