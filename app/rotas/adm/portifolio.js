@@ -69,22 +69,26 @@ module.exports = function(app){
         }
     });
 
+    app.get('/Admin/Portifolio/ObterItem', function(req, res){
+        repositorio.Obter("PortifolioItem", function(erro, dados){
+            res.send(dados);
+        });
+    });
+
     app.post('/Admin/Portifolio/UploadFile',function(req, res){
         uploadPortifolio(req, res, function (err) {
-            let caminho150 = req.file.destination + '\\150' + req.file.filename;
+            /*let caminho150 = req.file.destination + '\\150' + req.file.filename;
 
             Jimp.read(req.file.path, function (err, lenna) {
                 if (err) throw err;
                 console.log(lenna);
                 lenna.resize(150, 150)   
                      .write(caminho150); 
-            });
+            });*/
         if (err)
             res.send({status:500, message :err});
         else
-            res.send({status: 200, nomeArquivos :{
-                nomeArquivo : req.file.filename,
-                nomeArquivo150 : '150' + req.file.filename }});
+            res.send({status: 200, nomeArquivo : req.file.filename});
         });
     });
 }

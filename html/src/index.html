@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" ng-app="principal">
 
 <head>
     <meta charset="UTF-8">
@@ -22,13 +22,14 @@
     
     <link rel='stylesheet' id='contact-form-7-css' href='css/styles.css'  type='text/css' media='all' />
     <link rel='stylesheet' id='rotatingtweets-css' href='css/style2.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='MontserratFont-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700&#038;ver=4.6.4' type='text/css' media='all' />
-    <link rel='stylesheet' id='PTSansFont-css' href='http://fonts.googleapis.com/css?family=PT+Sans&#038;subset=latin%2Ccyrillic&#038;ver=4.6.4' type='text/css' media='all' />
+    <!--link rel='stylesheet' id='MontserratFont-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A400%2C700&#038;ver=4.6.4' type='text/css' media='all' />
+    <link rel='stylesheet' id='PTSansFont-css' href='http://fonts.googleapis.com/css?family=PT+Sans&#038;subset=latin%2Ccyrillic&#038;ver=4.6.4' type='text/css' media='all' /-->
     <link rel='stylesheet' id='bootstrap-css' href='css/bootstrap.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='font-awesome-css' href='css/font-awesome.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='pretty-photo-css' href='css/prettyPhoto.css' type='text/css' media='all' />
     <link rel='stylesheet' id='owl-carousel-css' href='css/owl.carousel.css' type='text/css' media='all' />
     <link rel='stylesheet' id='custom-style-css' href='css/main.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="css/magnific-popup.css" type='text/css' media='all'>
     <!-- http://theme.ridianur.com/alamak/wp-content/themes/alamak/style.css?ver=1 -->
     <style id='custom-style-inline-css' type='text/css'>
         .bg1 {
@@ -42,11 +43,44 @@
         .twitter-feed {
             background-image: url('images/backgroud/bg3.jpg');
         }
+
+        .mfp-fade.mfp-bg {
+            opacity: 0;
+          
+            -webkit-transition: all 0.15s ease-out;
+            -moz-transition: all 0.15s ease-out;
+            transition: all 0.15s ease-out;
+          }
+          /* overlay animate in */
+          .mfp-fade.mfp-bg.mfp-ready {
+            opacity: 0.8;
+          }
+          /* overlay animate out */
+          .mfp-fade.mfp-bg.mfp-removing {
+            opacity: 0;
+          }
+          
+          /* content at start */
+          .mfp-fade.mfp-wrap .mfp-content {
+            opacity: 0;
+          
+            -webkit-transition: all 0.15s ease-out;
+            -moz-transition: all 0.15s ease-out;
+            transition: all 0.15s ease-out;
+          }
+          /* content animate it */
+          .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+            opacity: 1;
+          }
+          /* content animate out */
+          .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+            opacity: 0;
+          }
     </style>
     <link rel='stylesheet' id='supersized-css' href='css/supersized.css' type='text/css' media='all' />
     <link rel='stylesheet' id='flickr_feed_style-css' href='css/flickr.css' type='text/css' media='all' />
     <link rel='stylesheet' id='ot-dynamic-css_box-css' href='css/dynamic.css' type='text/css' media='all' />
-    <script type='text/javascript' src='js/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery-3.2.1.min.js'></script>
     <script type='text/javascript' src='js/jquery-migrate.min.js'></script>
     <!--link rel='https://api.w.org/' href='http://theme.ridianur.com/alamak/wp-json/' /-->
     <!--link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://theme.ridianur.com/alamak/xmlrpc.php?rsd" /-->
@@ -148,16 +182,13 @@
     <!--HOME SECTION END-->
 
     <!--PORTFOLIO SECTION START-->
-    <section id="portfolio" class="clearfix content">
+    <section id="portfolio" class="clearfix content" ng-controller="PortifolioController">
         <div class="container">
-            <div class="title-content clearfix">
-                <div id="portifolio"></div>
-                <script id="portifolioScript" type="text/x-handlebars-template">
-                    <div class="title-inner">
-                        <h3>{{Titulo}}</h3>
-                        <p>{{SubTitulo}}</p>
-                    </div>
-                </script>
+            <div class="title-content clearfix" >                
+                <div class="title-inner">
+                    <h3>{{DescricaoPortifolio.Titulo}}</h3>
+                    <p>{{DescricaoPortifolio.SubTitulo}}</p>
+                </div>
                 <!--/.title-inner-->
             </div>
             <!--/.title-content-->
@@ -176,10 +207,10 @@
                 <div class="col-md-6 port-item" id="post-35">
                     <div class="port-inner white-bg clearfix">
                         <!--get original featured image link-->
-                        <a class="box-40 hovers bwWrapper" data-rel="prettyPhoto" href="images/pic1.jpg">
-                            <img width="600" height="600" src="images/pic1-600x600.jpg" class="attachment-portfolio-image size-portfolio-image wp-post-image"
-                                alt="pic1" srcset="images/pic1-600x600.jpg 600w, images/pic1-150x150.jpg 150w, images/pic1-768x768.jpg 768w, images/pic1-300x300.jpg 300w"
-                                sizes="(max-width: 600px) 100vw, 600px" /> </a>                        
+                        <a class="box-40 hovers bwWrapper test-popup-link" href="images/pic1-600x600.jpg" >
+                            <img src="images/pic1-600x600.jpg" class="img-fluid">
+                        </a>
+                                             
                         <div class="padding box-60">
                             <h3>Setting Phasers</h3>
                             <span>A young boy whose dog has just died moves into the house in whose backyard the snowman was built.
@@ -1141,13 +1172,24 @@
     <script type='text/javascript' src='js/jquery.cycle.all.min.js'></script>
     <script type='text/javascript' src='js/rotating_tweet.js'></script>
     <script type='text/javascript' src='js/handlebars-v4.0.10.js'></script>
-    <script src="js/Scripts/ServiceUtil.js"></script>
-    <script src="js/Scripts/Servico.js"></script>
+    <script type='text/javascript' src='js/jquery.magnific-popup.js'></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/Scripts/angular/main.js"></script>
+    <script type="text/javascript" src="js/Scripts/angular/controller.js"></script>
+    <script type="text/javascript" src="js/Scripts/ServiceUtil.js"></script>
+    <script type="text/javascript" src="js/Scripts/Servico.js"></script>
     <script type="text/javascript">
         (function ($) {
             "use strict";
             jQuery(document).ready(function ($) {
-                getPortifolio();
+                
+                $('.test-popup-link').magnificPopup({ 
+                    type: 'image',
+                    removalDelay: 300,
+                    mainClass: 'mfp-fade',
+                    
+                });
+                
 
                 $(".testimonial:has(>li:eq(1)),.norotatingtweets:has(>div:eq(1))").list_ticker({
                     speed: 6000,
@@ -1196,7 +1238,7 @@
         (function ($) {
             "use strict";
 
-
+            
 
             //portfolio ajax setting
             $(document).ready(function () {
@@ -1256,8 +1298,14 @@
         })(jQuery);
     </script>
     <script type="text/javascript">
+
+            
         (function ($) {
             'use strict';
+
+
+            
+
             //script for flickr feed
             $('.flickr-feed').jflickrfeed({
                 limit: 6,

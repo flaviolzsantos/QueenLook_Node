@@ -14,6 +14,7 @@ export class PortifolioComponent implements OnInit {
   modeloPortifolio : Portifolio;
   modeloPortifolioItem : PortifolioItem;
   portifolioSrv : PortifolioService;
+  listaDePortifolioItem : PortifolioItem[];
   urlApi : string = environment.apiEndpoint + "cadastrarItemPortifolio";
 
   constructor(portifolioService: PortifolioService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
@@ -33,6 +34,7 @@ export class PortifolioComponent implements OnInit {
 
   ngOnInit() {
     this.Listar();
+    this.ListarItem();
   }
 
   public salvar(){
@@ -47,6 +49,11 @@ export class PortifolioComponent implements OnInit {
     let listaPortifolio = this.portifolioSrv.Obter();
     if(listaPortifolio != undefined)
       this.modeloPortifolio = listaPortifolio;
+  }
+
+  public ListarItem(){
+    this.listaDePortifolioItem = this.portifolioSrv.ObterItem();
+    console.log(this.listaDePortifolioItem);
   }
 
   mostrarMensagem(metodoRetorno: any, mensagem: string) {

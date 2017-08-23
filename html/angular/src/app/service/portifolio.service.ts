@@ -22,6 +22,10 @@ export class PortifolioService {
         return this.http.post("Admin/Portifolio/CadastrarItem", modelo);
     }
 
+    ObterItem() {
+        return this.http.get('Admin/Portifolio/ObterItem');       
+    }
+
     PostWithFile( files: File[]) {
                 
         let headers = new Headers();
