@@ -85,7 +85,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var appRoutes = [
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
     { path: 'portifolio', component: __WEBPACK_IMPORTED_MODULE_11__portifolio_portifolio_component__["a" /* PortifolioComponent */] },
-    { path: '',
+    { path: 'adm',
         redirectTo: '/home',
         pathMatch: 'full'
     },

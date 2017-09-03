@@ -9,8 +9,12 @@ app.prod = false;
 
 app.use(bodyParser.json());
 app.use(express.static('./html/src'));
+app.all('/adm', function(req, res) {
+    res.sendFile(path.resolve('html/src/adm/index.html'));
+});
+
 //app.use('/adm', express.static(__dirname + '../html/src/adm'));
-app.use('/adm', express.static('./html/src/adm'));
+//app.use('/adm', express.static('./html/src/adm'));
 app.use(function (req, res, next) {
     if(req.get('host') == "localhost:3000"){
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');

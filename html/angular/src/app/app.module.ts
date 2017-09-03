@@ -20,7 +20,7 @@ import { PortifolioService } from "app/service/portifolio.service";
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'portifolio', component: PortifolioComponent },
-  { path: '',
+  { path: 'adm',
     redirectTo: '/home',
     pathMatch: 'full'
   },
