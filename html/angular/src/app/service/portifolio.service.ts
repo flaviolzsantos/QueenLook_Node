@@ -25,6 +25,12 @@ export class PortifolioService {
     ObterItem() {
         return this.http.get('Admin/Portifolio/ObterItem');       
     }
+    DeletarItemPortifolio(id){
+        return this.http.delete('Admin/Portifolio/DeletarItem',{id : id});
+    }
+    AtivarOuDeletarItem(id) {
+        return this.http.post('Admin/Portifolio/AtivarOuDesativarItem', { id: id });
+    }
 
     PostWithFile( files: File[]) {
                 

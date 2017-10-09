@@ -30,6 +30,7 @@ export class PortifolioComponent implements OnInit {
   onChange(event) {
         let files = event.srcElement.files;
         this.modeloPortifolioItem.Imagem = this.portifolioSrv.PostWithFile(files).nomeArquivo;
+        this.modeloPortifolioItem.Mudou = true;
     }
 
   ngOnInit() {
@@ -42,7 +43,16 @@ export class PortifolioComponent implements OnInit {
   }
 
   public adicionarItem(){
+    //this.modeloPortifolioItem.Mudou = false;
     this.mostrarMensagem(this.portifolioSrv.CadastrarItem(this.modeloPortifolioItem),"Cadastro com sucesso!");
+    //this.modeloPortifolioItem.LimparDados();
+    this.modeloPortifolioItem._id = "";
+    this.modeloPortifolioItem.Titulo = "";
+    this.modeloPortifolioItem.Conteudo = "";
+    this.modeloPortifolioItem.Ativo = false;
+    this.modeloPortifolioItem.Ordem = 0;
+    this.modeloPortifolioItem.Imagem = "";
+    this.ListarItem();
   }
 
   public Listar() {
@@ -53,7 +63,24 @@ export class PortifolioComponent implements OnInit {
 
   public ListarItem(){
     this.listaDePortifolioItem = this.portifolioSrv.ObterItem();
-    console.log(this.listaDePortifolioItem);
+  }
+  public DeletarItemPortifolio(id) {
+    if (confirm("Tem certeza que deseja excluir esse item?")) {
+        this.mostrarMensagem(this.portifolioSrv.DeletarItemPortifolio(id), "Deletado com sucesso!");
+        this.ListarItem();
+    }
+  }
+  public EditarItem(valor) {
+    this.modeloPortifolioItem = valor;
+  }
+  public AtivarOuDesativatItem(id){
+    var metodoRetorno = this.portifolioSrv.AtivarOuDeletarItem(id);
+    
+    if (metodoRetorno.status == 500) 
+        this.toastr.error(metodoRetorno.message);       
+
+    this.ListarItem();
+
   }
 
   mostrarMensagem(metodoRetorno: any, mensagem: string) {

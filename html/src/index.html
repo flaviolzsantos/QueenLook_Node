@@ -204,18 +204,17 @@
 
             <div class="row">
                 <!--PORTFOLIO LOOP START-->
-                <div class="col-md-6 port-item" id="post-35">
+                
+                <div class="col-md-6 port-item" id="post-35" ng-repeat="item in ItensPortifolio" >
                     <div class="port-inner white-bg clearfix">
                         <!--get original featured image link-->
-                        <a class="box-40 hovers bwWrapper test-popup-link" href="images/pic1-600x600.jpg" >
-                            <img src="images/pic1-600x600.jpg" class="img-fluid">
+                        <a class="box-40 hovers bwWrapper test-popup-link" href="{{item.Imagem}}" >
+                            <img src="{{item.Imagem}}" class="img-fluid">
                         </a>
                                              
                         <div class="padding box-60">
-                            <h3>Setting Phasers</h3>
-                            <span>A young boy whose dog has just died moves into the house in whose backyard the snowman was built.
-                                Finding a photograph of the snowman the boy rebuilds him asd asdas asda asd asdasd asd asda sasd 
-                                asd asd asd</span>
+                            <h3>{{item.Titulo}}</h3>
+                            <span>{{item.Conteudo}}</span>
                         </div>
                         <!--/.padding-->
                     </div>
@@ -1191,17 +1190,17 @@
                 });
                 
 
-                $(".testimonial:has(>li:eq(1)),.norotatingtweets:has(>div:eq(1))").list_ticker({
-                    speed: 6000,
-                    effect: 'fade'
-                });
+                // $(".testimonial:has(>li:eq(1)),.norotatingtweets:has(>div:eq(1))").list_ticker({
+                //     speed: 6000,
+                //     effect: 'fade'
+                // });
 
                 var listaHome = [];
 
                 jQuery.each(getHome(), function (key, value) {
                     var titulo = (value.Conteudo != undefined) ? '<h2>' + value.Titulo + ' &amp; ' + value.Conteudo + '</h2>' : '<h2>' + value.Titulo + '</h2>'
                     listaHome.push({
-                        image: 'images/backgroud/' + value.Imagem,
+                        image: value.Imagem,
                         title: titulo
                     });
                 });
@@ -1235,142 +1234,138 @@
         })(jQuery);
     </script>
     <script type="text/javascript">
-        (function ($) {
-            "use strict";
+        // (function ($) {
+        //     "use strict";
 
             
 
-            //portfolio ajax setting
-            $(document).ready(function () {
-                $('.more,.cat-icon').click(function () {
+        //     //portfolio ajax setting
+        //     $(document).ready(function () {
+        //         $('.more,.cat-icon').click(function () {
 
-                    var toLoad = $(this).attr('data-link') + ' .worksajax > *';
-                    $('.worksajax').slideUp('slow', loadContent);
+        //             var toLoad = $(this).attr('data-link') + ' .worksajax > *';
+        //             $('.worksajax').slideUp('slow', loadContent);
 
-                    function loadContent() {
-                        $('.worksajax').load(toLoad, '', showNewContent)
-                    }
+        //             function loadContent() {
+        //                 $('.worksajax').load(toLoad, '', showNewContent)
+        //             }
 
-                    function showNewContent() {
-                        $.getScript("js/portfolio.js");
-                        $('.worksajax').slideDown('slow');
+        //             function showNewContent() {
+        //                 $.getScript("js/portfolio.js");
+        //                 $('.worksajax').slideDown('slow');
 
-                    }
+        //             }
 
-                    return false;
+        //             return false;
 
 
-                });
+        //         });
 
-            });
-        })(jQuery);
+        //     });
+        // })(jQuery);
     </script>
     <script type="text/javascript">
-        (function ($) {
-            "use strict";
+        // (function ($) {
+        //     "use strict";
 
 
 
-            //portfolio ajax setting
-            $(document).ready(function () {
-                $('.team-ajax,.team-icon').click(function () {
+        //     //portfolio ajax setting
+        //     // $(document).ready(function () {
+        //     //     debugger;
+        //     //     $('.team-ajax,.team-icon').click(function () {
 
-                    var toLoad = $(this).attr('data-link') + ' #time';
-                    console.log(toLoad);
-                    $('.teamajax').slideUp('slow', loadContent);
+        //     //         var toLoad = $(this).attr('data-link') + ' #time';
+        //     //         console.log(toLoad);
+        //     //         $('.teamajax').slideUp('slow', loadContent);
 
-                    function loadContent() {
-                        $('.teamajax').load(toLoad, '', showNewContent)
-                    }
+        //     //         function loadContent() {
+        //     //             $('.teamajax').load(toLoad, '', showNewContent)
+        //     //         }
 
-                    function showNewContent() {
-                        $.getScript("js/team.js");
-                        $('.teamajax').slideDown('slow');
+        //     //         function showNewContent() {
+        //     //             $.getScript("js/team.js");
+        //     //             $('.teamajax').slideDown('slow');
 
-                    }
+        //     //         }
 
-                    return false;
+        //     //         return false;
 
 
-                });
+        //     //     });
 
-            });
-        })(jQuery);
+        //     // });
+        // })(jQuery);
     </script>
     <script type="text/javascript">
 
             
-        (function ($) {
-            'use strict';
+        // (function ($) {
+        //     'use strict';
 
 
             
 
-            //script for flickr feed
-            $('.flickr-feed').jflickrfeed({
-                limit: 6,
-                qstrings: {
-                    id: '71865026@N00'
-                },
-                itemTemplate: '<li>' + '<a href="{{image_b}}" data-rel="prettyPhoto"><img src="{{image_s}}" alt="{{title}}" /></a>' + '</li>'
-            });
-            // script prettyphoto
-            $(window).load(function () {
-                $(".flickr-feed a").prettyPhoto({
-                    social_tools: false,
-                    deeplinking: false
-                });
-            });
-        })(jQuery);
+        //     //script for flickr feed
+        //     $('.flickr-feed').jflickrfeed({
+        //         limit: 6,
+        //         qstrings: {
+        //             id: '71865026@N00'
+        //         },
+        //         itemTemplate: '<li>' + '<a href="{{image_b}}" data-rel="prettyPhoto"><img src="{{image_s}}" alt="{{title}}" /></a>' + '</li>'
+        //     });
+        //     // script prettyphoto
+        //     $(window).load(function () {
+        //         $(".flickr-feed a").prettyPhoto({
+        //             social_tools: false,
+        //             deeplinking: false
+        //         });
+        //     });
+        // })(jQuery);
     </script>
 
     <script type="text/javascript">
-        (function ($) {
-            'use strict';
+        // (function ($) {
+        //     'use strict';
 
-            //google map
-            $(document).ready(function () {
-                var icons = 'http://theme.ridianur.com/alamak/wp-content/plugins/alamak_plugin/inc/office-building.png'
-                $('.map_canvas').gmap({
-                    'center': '-6.94010,107.62575',
-                    'zoom': 15,
-                    scrollwheel: false,
-                    'disableDefaultUI': false,
-                    'styles': [{
-                        stylers: [{
-                            lightness: 7
-                        }, {
-                            saturation: -100
-                        }]
-                    }],
-                    'callback': function () {
-                        var self = this;
+        //     //google map
+        //     $(document).ready(function () {
+        //         var icons = 'http://theme.ridianur.com/alamak/wp-content/plugins/alamak_plugin/inc/office-building.png'
+        //         $('.map_canvas').gmap({
+        //             'center': '-6.94010,107.62575',
+        //             'zoom': 15,
+        //             scrollwheel: false,
+        //             'disableDefaultUI': false,
+        //             'styles': [{
+        //                 stylers: [{
+        //                     lightness: 7
+        //                 }, {
+        //                     saturation: -100
+        //                 }]
+        //             }],
+        //             'callback': function () {
+        //                 var self = this;
 
-                        self.addMarker({
-                            'position': this.get('map').getCenter(),
-                            icon: icons,
-                        }).click(function () {
-                            self.openInfoWindow({
-                                'content': 'Visit Us <br> Address: 11231 Buah Batu Bandung <br> Phone: 1233-2324-2324 <br>Email: company-email@email.com'
-                            }, this);
-                        });
+        //                 self.addMarker({
+        //                     'position': this.get('map').getCenter(),
+        //                     icon: icons,
+        //                 }).click(function () {
+        //                     self.openInfoWindow({
+        //                         'content': 'Visit Us <br> Address: 11231 Buah Batu Bandung <br> Phone: 1233-2324-2324 <br>Email: company-email@email.com'
+        //                     }, this);
+        //                 });
 
-                    }
+        //             }
 
-                });
-            });
-
-
+        //         });
+        //     });
 
 
-        })(jQuery);
+
+
+        // })(jQuery);
     </script>
 
 </body>
 
 </html>
-
-<!-- Dynamic page generated in 2.332 seconds. -->
-<!-- Cached page generated by WP-Super-Cache on 2017-04-07 00:36:14 -->
-
-<!-- Compression = gzip -->

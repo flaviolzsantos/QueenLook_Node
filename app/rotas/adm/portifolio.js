@@ -1,13 +1,12 @@
 let Repositorio = require('../../../config/repositorio').Repositorio,
-multer  =   require('multer');
-var Jimp = require("jimp");
+multer  =   require('multer'),
+fs = require('fs'),
+caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html\\imagesTmp';
 
 var storagePortifolio =   multer.diskStorage({
 destination: function (req, file, callback) {
-    let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1); 
-    //console.log(caminho); 
-    
-    callback(null, caminho + 'html\\src\\images\\portifolio');
+
+    callback(null, caminho);
 },
 filename: function (req, file, callback) {
     callback(null, Date.now() + "-" + file.originalname);
@@ -18,7 +17,7 @@ let uploadPortifolio = multer({ storage : storagePortifolio }).single('files');
 
 let repositorio = new Repositorio();
 
-module.exports = function(app){
+module.exports = function(app, cloudinary){
 
     app.post('/Admin/Portifolio/Cadastrar',function(req,res){
         let obj = req.body;
@@ -49,6 +48,7 @@ module.exports = function(app){
     app.post('/Admin/Portifolio/CadastrarItem',function(req,res){
         let obj = req.body;
         obj.Ativo = (obj.Ativo == 'true');
+        let cam = caminho + "\\" + obj.Imagem;
 
         let call = function(erro){
             if(erro){
@@ -59,13 +59,31 @@ module.exports = function(app){
 
         if(obj["_id"] == ''){//Novo                       
             obj.Ativo = true;  
-            repositorio.Salvar("PortifolioItem",obj,function(ret){
-                call();
-            }); 
+
+            cloudinary.uploader.upload(cam, function(result) { 
+                obj.Imagem = result.url; 
+                obj.Mudou = false;
+                fs.unlink(cam);
+                repositorio.Salvar("PortifolioItem",obj,function(ret){
+                    call();
+                }); 
+            });
         }else{
-            repositorio.Atualizar("PortifolioItem",obj,function(ret){
-                call();
-            })
+            if(obj.Mudou == 'true'){
+                cloudinary.uploader.upload(cam, function(result) { 
+                    obj.Imagem = result.url; 
+                    obj.Mudou = false;
+                    fs.unlink(cam);
+                    repositorio.Atualizar("PortifolioItem",obj,function(ret){
+                        call();
+                    }); 
+                });
+            }else{
+                repositorio.Atualizar("PortifolioItem",obj,function(ret){
+                    call();
+                }); 
+            }
+            
         }
     });
 
@@ -74,17 +92,36 @@ module.exports = function(app){
             res.send(dados);
         });
     });
+    app.delete('/Admin/Portifolio/DeletarItem', function(req, res){
+        let id = req.body.id;
+        repositorio.Deletar(id, "PortifolioItem", function(erro, result){
+            if(erro)
+                res.send({status:500, message: erro});
+            else
+                res.send({status:200, message: "Deletado com sucesso"});
+        });
+    });
+    app.post('/Admin/Portifolio/AtivarOuDesativarItem', function(req, res){
+        let id = req.body.id;
+        let call = function(erro, result){
+            if(erro)
+                res.send({status:500, message: erro});
+            else
+                res.send({status:200, message: result}); 
+        };
+
+        repositorio.ObterDocumentoPorId("PortifolioItem", id, function(erro, row){
+                        
+            row.Ativo = !row.Ativo;
+            repositorio.Atualizar("PortifolioItem",row,function(ret){
+                call();
+            });   
+        });
+    });
 
     app.post('/Admin/Portifolio/UploadFile',function(req, res){
         uploadPortifolio(req, res, function (err) {
-            /*let caminho150 = req.file.destination + '\\150' + req.file.filename;
-
-            Jimp.read(req.file.path, function (err, lenna) {
-                if (err) throw err;
-                console.log(lenna);
-                lenna.resize(150, 150)   
-                     .write(caminho150); 
-            });*/
+            
         if (err)
             res.send({status:500, message :err});
         else

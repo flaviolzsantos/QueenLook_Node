@@ -15,4 +15,10 @@ module.exports = function(app){
         });
     });
 
+    app.get('/Ui/Portifolio/ObterPortifolioItem',function(req, res){    
+        repositorio.ObterComFiltro("PortifolioItem",{Ativo : true}, function(erro,lista){
+            res.send(lista);
+        });
+    });
+
 }

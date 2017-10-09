@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewContainerRef, Output } from '@angular/core';
 import { HomeService } from "app/service/home.service";
 import { Home } from "app/model/home.model";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -10,7 +10,7 @@ import * as $ from 'jquery';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    modelo: Home;
+    @Input()modelo: Home;
     homeSrv: HomeService;
     
     listaValores: any;
@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     }
 
     public cadastrar() {
-        //this.enviarImagem();
         this.mostrarMensagem(this.homeSrv.CadastrarInfo(this.modelo),"Cadastro com sucesso!");
         
         this.ListaValores();
@@ -70,8 +69,8 @@ export class HomeComponent implements OnInit {
    
 
     onChange(event) {
-        let file = event.srcElement.files;
-        this.modelo.Imagem = this.homeSrv.postWithFile(file).nomeArquivo;
+                
+        this.modelo.Imagem = this.homeSrv.postWithFile(event.srcElement.files).nomeArquivo;
     }
 
 

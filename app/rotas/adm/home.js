@@ -1,11 +1,13 @@
 let Repositorio = require('../../../config/repositorio').Repositorio,
 multer  =   require('multer'),
-nomeObjeto = "Home";
+nomeObjeto = "Home",
+fs = require('fs');
+let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html\\imagesTmp';
+
 
 var storageHome =   multer.diskStorage({
   destination: function (req, file, callback) {
-    let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1);  
-    callback(null, caminho + 'html\\src\\images\\backgroud');
+    callback(null, caminho );
   },
   filename: function (req, file, callback) {
     callback(null, Date.now() + "-" + file.originalname);
@@ -25,7 +27,7 @@ function validarCadastro(estaAtivando, invalidaValidacao, call){
     
 }
 
-module.exports = function(app){
+module.exports = function(app, cloudinary){
 
     app.get('/Admin/Home/ObterListaHome', function(req, res){    
         repositorio.Obter(nomeObjeto,function(erro,lista){
@@ -43,15 +45,24 @@ module.exports = function(app){
                 res.send({status:200, message: "Salvo com sucesso"});
         };
 
+        
+
+        
         validarCadastro(true,(obj["_id"] != ''), function(erro){
             if(erro)
                 call(erro);
             else{
                 if(obj["_id"] == ''){//Novo                       
                     obj.Ativo = true;  
-                    repositorio.Salvar(nomeObjeto,obj,function(ret){
-                        call();
-                    }); 
+                    let cam = caminho + "\\" + obj.Imagem;
+                    cloudinary.uploader.upload(cam, function(result) { 
+                        obj.Imagem = result.url; 
+                        fs.unlink(cam);
+                        repositorio.Salvar(nomeObjeto,obj,function(ret){
+                            call();
+                        });
+                    });
+                     
                 }else{
                     obj.Ativo = (obj.Ativo == 'true');
                     repositorio.Atualizar(nomeObjeto,obj,function(ret){
@@ -99,8 +110,9 @@ module.exports = function(app){
         uploadHome(req, res, function (err) {
         if (err)
             res.send({status:500, message :err});
-        else
+        else{
             res.send({status: 200, nomeArquivo : req.file.filename});
+        }
         });
     });
 }

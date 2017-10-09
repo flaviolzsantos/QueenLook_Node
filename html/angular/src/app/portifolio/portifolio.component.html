@@ -66,15 +66,18 @@
                         <th width="40%">Título</th>
                         <th width="40%">Conteúdo</th>
                         <th width="20%">Ordem</th>
+                        <th width="40%">Imagem</th>
                         <th>Ativo</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="{{valor._id}}" *ngFor= "let valor of listaValores">                    
+                    <tr id="{{valor._id}}" *ngFor= "let valor of listaDePortifolioItem">                    
                         <td>{{valor.Titulo}}</td>
                         <td>{{valor.Conteudo}}</td>
+                        <td>{{valor.Ordem}}</td>
+                        <td><img src="{{valor.Imagem}}" width="30px" height="30px" /> </td>
                         <td class="text-center">
                         <div class="btn-group">
                             <a href="javascript:void(0);">
@@ -84,7 +87,7 @@
                         </td>
                         <td class="text-right">
                             <div class="btn-group">                            
-                                <a href="javascript:void(0);" (click)="DeletarHome(valor._id)"> 
+                                <a href="javascript:void(0);" (click)="DeletarItemPortifolio(valor._id)"> 
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </div>

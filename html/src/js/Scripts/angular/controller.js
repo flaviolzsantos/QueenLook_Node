@@ -4,9 +4,14 @@ angular.module('principal')
 })
 .controller("PortifolioController",function($scope, $http){
     $scope.DescricaoPortifolio = {};
-    $scope.ItensPortifolio = [];
+    $scope.ItensPortifolio = getPortifolioItem();
 
     $http.get("Ui/Portifolio/ObterPortifolio").then(function(dados){
         $scope.DescricaoPortifolio = dados.data;
     });
+
+
+    // $http.get("Ui/Portifolio/ObterPortifolioItem").then(function(dados){
+    //     $scope.ItensPortifolio = dados.data;
+    // });
 });

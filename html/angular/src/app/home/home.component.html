@@ -3,13 +3,13 @@
     <div class="col-lg-4 col-md-4">
         <div class="form-group">
             <label>Título</label>
-            <input [(value)]="modelo.Titulo" class="form-control" /> 
+            <input [(value)]="modelo.Titulo" (input)="modelo.Titulo = $event.target.value" class="form-control" /> 
         </div>
     </div>
     <div class="col-lg-4 col-md-4">
       <div class="form-group">
             <label>Conteudo</label>
-            <input [(value)]="modelo.Conteudo" class="form-control" />
+            <input [(value)]="modelo.Conteudo" (input)="modelo.Conteudo = $event.target.value" class="form-control" />
         </div>
     </div>
     <div class="col-lg-4 col-md-4">
@@ -35,6 +35,7 @@
                 <tr>
                     <th width="40%">Título</th>
                     <th width="40%">Conteúdo</th>
+                    <th width="40%">Imagem</th>
                     <th>Ativo</th>
                     <th></th>
                     <th></th>
@@ -44,6 +45,7 @@
                 <tr id="{{valor._id}}" *ngFor= "let valor of listaValores">                    
                     <td>{{valor.Titulo}}</td>
                     <td>{{valor.Conteudo}}</td>
+                    <td><img src="{{valor.Imagem}}" width="30px" height="30px" /> </td>
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="javascript:void(0);">
