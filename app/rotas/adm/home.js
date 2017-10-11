@@ -2,7 +2,7 @@ let Repositorio = require('../../../config/repositorio').Repositorio,
 multer  =   require('multer'),
 nomeObjeto = "Home",
 fs = require('fs');
-let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html\\imagesTmp';
+let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html/imagesTmp';
 
 
 var storageHome =   multer.diskStorage({
@@ -54,7 +54,7 @@ module.exports = function(app, cloudinary){
             else{
                 if(obj["_id"] == ''){//Novo                       
                     obj.Ativo = true;  
-                    let cam = caminho + "\\" + obj.Imagem;
+                    let cam = caminho + "/" + obj.Imagem;
                     cloudinary.uploader.upload(cam, function(result) { 
                         obj.Imagem = result.url; 
                         fs.unlink(cam);
