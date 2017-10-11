@@ -7,7 +7,7 @@
     {
       "root": "src",
       "outDir": "../src/adm",
-      "deployUrl": "./adm",
+      "deployUrl": "./adm/",
       "assets": [
         "assets",
         "favicon.ico"
