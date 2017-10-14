@@ -1,7 +1,7 @@
 let Repositorio = require('../../../config/repositorio').Repositorio,
 multer  =   require('multer'),
 fs = require('fs'),
-caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html\\imagesTmp';
+caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html/imagesTmp';
 
 var storagePortifolio =   multer.diskStorage({
 destination: function (req, file, callback) {
