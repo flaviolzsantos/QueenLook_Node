@@ -40,7 +40,7 @@ export class HomeService {
         let formData: FormData = new FormData();
         formData.append('files', files[0], files[0].name);
 
-        return this.http.postWithFile('Admin/Home/UploadFile', formData);
+        return this.http.postWithFile('Admin/UploadFile', formData);
     }
 
 }

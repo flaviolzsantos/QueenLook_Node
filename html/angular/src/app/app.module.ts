@@ -11,15 +11,20 @@ import { HomeModule } from "app/home/home.module";
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptor } from "app/HttpInterceptor";
+
 import { HomeComponent } from './home/home.component';
 import { PortifolioComponent } from './portifolio/portifolio.component';
+import { QuemSomosComponent } from './quem-somos/quem-somos.component';
 
 import { HomeService } from "app/service/home.service";
 import { PortifolioService } from "app/service/portifolio.service";
+import { QuemSomosService } from './service/quem-somos.service';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'portifolio', component: PortifolioComponent },
+  { path: 'quemSomos', component: QuemSomosComponent },
   { path: 'adm',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -32,7 +37,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PortifolioComponent
+    PortifolioComponent,
+    QuemSomosComponent
   ],
   imports: [
  RouterModule.forRoot(
@@ -49,7 +55,8 @@ const appRoutes: Routes = [
   providers: [
       HomeService,
       HttpInterceptor,
-      PortifolioService
+      PortifolioService,
+      QuemSomosService
   ],
   bootstrap: [AppComponent]
 })

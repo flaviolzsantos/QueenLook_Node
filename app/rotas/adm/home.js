@@ -1,20 +1,5 @@
 let Repositorio = require('../../../config/repositorio').Repositorio,
-multer  =   require('multer'),
-nomeObjeto = "Home",
-fs = require('fs');
-let caminho = __dirname.substring(0, __dirname.length - '\\app\rotas\adm'.length - 1) + 'html/imagesTmp';
-
-
-var storageHome =   multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, caminho );
-  },
-  filename: function (req, file, callback) {
-    callback(null, Date.now() + "-" + file.originalname);
-  }
-});
-
-let uploadHome = multer({ storage : storageHome }).single('files');
+nomeObjeto = "Home";
 
 let repositorio = new Repositorio();
 
@@ -44,9 +29,6 @@ module.exports = function(app, cloudinary){
             }else
                 res.send({status:200, message: "Salvo com sucesso"});
         };
-
-        
-
         
         validarCadastro(true,(obj["_id"] != ''), function(erro){
             if(erro)
@@ -54,14 +36,16 @@ module.exports = function(app, cloudinary){
             else{
                 if(obj["_id"] == ''){//Novo                       
                     obj.Ativo = true;  
-                    let cam = caminho + "/" + obj.Imagem;
-                    cloudinary.uploader.upload(cam, function(result) { 
-                        obj.Imagem = result.url; 
-                        fs.unlink(cam);
+                    let cam = app.caminhoImagem + "/" + obj.Imagem;
+
+                    let callUpload = function(result){
+                        obj.Imagem = result.url;                         
                         repositorio.Salvar(nomeObjeto,obj,function(ret){
                             call();
                         });
-                    });
+                    }
+
+                    cloudinary.upload(cam, callUpload);
                      
                 }else{
                     obj.Ativo = (obj.Ativo == 'true');

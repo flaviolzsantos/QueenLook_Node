@@ -164,7 +164,7 @@ HttpInterceptor = __decorate([
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>Simple Responsive Admin</title>    \r\n    <!-- /. WRAPPER  -->\r\n    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->\r\n    <!-- JQUERY SCRIPTS -->\r\n    <script src=\"assets/js/jquery-1.10.2.js\"></script>\r\n    <!-- BOOTSTRAP SCRIPTS -->\r\n    <script src=\"assets/js/bootstrap.min.js\"></script>\r\n    <!-- CUSTOM SCRIPTS -->\r\n    <script src=\"assets/js/custom.js\"></script>\r\n    \r\n\r\n</head>\r\n\r\n<body>\r\n\r\n    <div id=\"wrapper\">\r\n        <div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n            <div class=\"adjust-nav\">\r\n                <div class=\"navbar-header\">\r\n                    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".sidebar-collapse\">\r\n                        <span class=\"icon-bar\"></span>\r\n                        <span class=\"icon-bar\"></span>\r\n                        <span class=\"icon-bar\"></span>\r\n                    </button>\r\n                    <a class=\"navbar-brand\" href=\"#\">\r\n                        \r\n\r\n                    </a>\r\n\r\n                </div>\r\n                \r\n\r\n                <span class=\"logout-spn\">\r\n                  <a href=\"#\" style=\"color:#fff;\">LOGOUT</a>  \r\n\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <!-- /. NAV TOP  -->\r\n        <nav class=\"navbar-default navbar-side\" role=\"navigation\">\r\n            <div class=\"sidebar-collapse\">\r\n                <ul class=\"nav\" id=\"main-menu\">\r\n\r\n                    <li class=\"active-link\">\r\n                        <!--<a href=\"index.html\"><i class=\"fa fa-desktop \"></i>Home </a>-->\r\n                        <a routerLink=\"/home\" routerLinkActive=\"active\"><i class=\"fa fa-desktop \"></i>Home</a>\r\n                    </li>  \r\n                    <li class=\"active-link\">\r\n                        <!--<a href=\"index.html\"><i class=\"fa fa-id-badge \"></i>Portifólio </a>-->\r\n                        <a routerLink=\"/portifolio\" routerLinkActive=\"active\"><i class=\"fa fa-id-badge \"></i>Portifólio</a>\r\n                    </li>                   \r\n\r\n                </ul>\r\n            </div>\r\n\r\n        </nav>\r\n        <!-- /. NAV SIDE  -->\r\n        <div id=\"page-wrapper\">\r\n            <div id=\"page-inner\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <h2>ADMIN </h2>\r\n                    </div>\r\n                </div>\r\n                <!-- /. ROW  -->\r\n                <hr />\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12 \">\r\n                        <router-outlet></router-outlet>\r\n                    </div>\r\n                </div>\r\n                \r\n                \r\n            </div>\r\n            <!-- /. PAGE INNER  -->\r\n        </div>\r\n        <!-- /. PAGE WRAPPER  -->\r\n    </div>\r\n    <div class=\"footer\">\r\n\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                &copy; 2014 yourdomain.com | Design by: <a href=\"http://binarytheme.com\" style=\"color:#fff;\" target=\"_blank\">www.binarytheme.com</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n    \r\n\r\n</body>\r\n\r\n</html>\r\n"
+module.exports = "<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>Simple Responsive Admin</title>    \r\n    <!-- /. WRAPPER  -->\r\n    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->\r\n    <!-- JQUERY SCRIPTS -->\r\n    <script src=\"assets/js/jquery-1.10.2.js\"></script>\r\n    <!-- BOOTSTRAP SCRIPTS -->\r\n    <script src=\"assets/js/bootstrap.min.js\"></script>\r\n    <!-- CUSTOM SCRIPTS -->\r\n    <script src=\"assets/js/custom.js\"></script>\r\n    \r\n\r\n</head>\r\n\r\n<body>\r\n\r\n    <div id=\"wrapper\">\r\n        <div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n            <div class=\"adjust-nav\">\r\n                <div class=\"navbar-header\">\r\n                    <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".sidebar-collapse\">\r\n                        <span class=\"icon-bar\"></span>\r\n                        <span class=\"icon-bar\"></span>\r\n                        <span class=\"icon-bar\"></span>\r\n                    </button>\r\n                    <a class=\"navbar-brand\" href=\"#\">\r\n                        \r\n\r\n                    </a>\r\n\r\n                </div>\r\n                \r\n\r\n                <span class=\"logout-spn\">\r\n                  <a href=\"#\" style=\"color:#fff;\">LOGOUT</a>  \r\n\r\n                </span>\r\n            </div>\r\n        </div>\r\n        <!-- /. NAV TOP  -->\r\n        <nav class=\"navbar-default navbar-side\" role=\"navigation\">\r\n            <div class=\"sidebar-collapse\">\r\n                <ul class=\"nav\" id=\"main-menu\">\r\n\r\n                    <li class=\"active-link\">\r\n                        <a routerLink=\"/home\" routerLinkActive=\"active\"><i class=\"fa fa-desktop \"></i>Home</a>\r\n                    </li>  \r\n                    <li class=\"active-link\">\r\n                        <a routerLink=\"/portifolio\" routerLinkActive=\"active\"><i class=\"fa fa-id-badge \"></i>Portifólio</a>\r\n                    </li>\r\n                    <li class=\"active-link\">\r\n                        <a routerLink=\"/quemSomos\" routerLinkActive=\"active\"><i class=\"fa fa-users \"></i>Quem Somos</a>\r\n                    </li>                   \r\n\r\n                </ul>\r\n            </div>\r\n\r\n        </nav>\r\n        <!-- /. NAV SIDE  -->\r\n        <div id=\"page-wrapper\">\r\n            <div id=\"page-inner\">\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12\">\r\n                        <h2>ADMIN </h2>\r\n                    </div>\r\n                </div>\r\n                <!-- /. ROW  -->\r\n                <hr />\r\n                <div class=\"row\">\r\n                    <div class=\"col-lg-12 \">\r\n                        <router-outlet></router-outlet>\r\n                    </div>\r\n                </div>\r\n                \r\n                \r\n            </div>\r\n            <!-- /. PAGE INNER  -->\r\n        </div>\r\n        <!-- /. PAGE WRAPPER  -->\r\n    </div>\r\n    <div class=\"footer\">\r\n\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-12\">\r\n                &copy; 2014 yourdomain.com | Design by: <a href=\"http://binarytheme.com\" style=\"color:#fff;\" target=\"_blank\">www.binarytheme.com</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n    \r\n\r\n</body>\r\n\r\n</html>\r\n"
 
 /***/ }),
 
@@ -228,8 +228,10 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_app_HttpInterceptor__ = __webpack_require__("../../../../../src/app/HttpInterceptor.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__portifolio_portifolio_component__ = __webpack_require__("../../../../../src/app/portifolio/portifolio.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_app_service_home_service__ = __webpack_require__("../../../../../src/app/service/home.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_app_service_portifolio_service__ = __webpack_require__("../../../../../src/app/service/portifolio.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__quem_somos_quem_somos_component__ = __webpack_require__("../../../../../src/app/quem-somos/quem-somos.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_app_service_home_service__ = __webpack_require__("../../../../../src/app/service/home.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_app_service_portifolio_service__ = __webpack_require__("../../../../../src/app/service/portifolio.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__service_quem_somos_service__ = __webpack_require__("../../../../../src/app/service/quem-somos.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -250,9 +252,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var appRoutes = [
     { path: 'home', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
     { path: 'portifolio', component: __WEBPACK_IMPORTED_MODULE_11__portifolio_portifolio_component__["a" /* PortifolioComponent */] },
+    { path: 'quemSomos', component: __WEBPACK_IMPORTED_MODULE_12__quem_somos_quem_somos_component__["a" /* QuemSomosComponent */] },
     { path: 'adm',
         redirectTo: '/home',
         pathMatch: 'full'
@@ -267,7 +272,8 @@ AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__portifolio_portifolio_component__["a" /* PortifolioComponent */]
+            __WEBPACK_IMPORTED_MODULE_11__portifolio_portifolio_component__["a" /* PortifolioComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__quem_somos_quem_somos_component__["a" /* QuemSomosComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
@@ -280,9 +286,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7_ng2_toastr_ng2_toastr__["ToastModule"].forRoot()
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_12_app_service_home_service__["a" /* HomeService */],
+            __WEBPACK_IMPORTED_MODULE_13_app_service_home_service__["a" /* HomeService */],
             __WEBPACK_IMPORTED_MODULE_9_app_HttpInterceptor__["a" /* HttpInterceptor */],
-            __WEBPACK_IMPORTED_MODULE_13_app_service_portifolio_service__["a" /* PortifolioService */]
+            __WEBPACK_IMPORTED_MODULE_14_app_service_portifolio_service__["a" /* PortifolioService */],
+            __WEBPACK_IMPORTED_MODULE_15__service_quem_somos_service__["a" /* QuemSomosService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
     })
@@ -839,6 +846,67 @@ var _a, _b, _c;
 
 /***/ }),
 
+/***/ "../../../../../src/app/quem-somos/quem-somos.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/quem-somos/quem-somos.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  quem-somos works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/quem-somos/quem-somos.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuemSomosComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var QuemSomosComponent = (function () {
+    function QuemSomosComponent() {
+    }
+    QuemSomosComponent.prototype.ngOnInit = function () {
+    };
+    return QuemSomosComponent;
+}());
+QuemSomosComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-quem-somos',
+        template: __webpack_require__("../../../../../src/app/quem-somos/quem-somos.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/quem-somos/quem-somos.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], QuemSomosComponent);
+
+//# sourceMappingURL=quem-somos.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/service/home.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -882,7 +950,7 @@ var HomeService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
         var formData = new FormData();
         formData.append('files', files[0], files[0].name);
-        return this.http.postWithFile('Admin/Home/UploadFile', formData);
+        return this.http.postWithFile('Admin/UploadFile', formData);
     };
     return HomeService;
 }());
@@ -956,15 +1024,51 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/service/quem-somos.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuemSomosService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var QuemSomosService = (function () {
+    function QuemSomosService() {
+    }
+    return QuemSomosService;
+}());
+QuemSomosService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [])
+], QuemSomosService);
+
+//# sourceMappingURL=quem-somos.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/environments/environment.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true,
+    production: false,
     basic_auth_token: "aaa",
-    apiEndpoint: "http://www.queenlook.com.br/"
+    //apiEndpoint: "http://www.queenlook.com.br/"
+    apiEndpoint: "http://localhost:3000/"
 };
 //# sourceMappingURL=environment.js.map
 

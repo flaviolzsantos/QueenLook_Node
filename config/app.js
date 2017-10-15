@@ -6,6 +6,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.prod = false;
+app.caminhoImagem = __dirname.substring(0, __dirname.length - '\\config'.length + 1)+ 'html/imagesTmp';
+//console.log(app.caminhoImagem);
+
 
 app.use(bodyParser.json());
 app.use(express.static('./html/src'));
