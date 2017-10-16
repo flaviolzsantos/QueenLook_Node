@@ -44,6 +44,10 @@
 
     $(document).ready(function () {
         mainApp.main_fun();
+        console.log("aaaaaaa");
     });
+
+    console.log("aaaaaaa");
+    debugger;
 
 }(jQuery));

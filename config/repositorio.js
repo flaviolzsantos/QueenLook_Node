@@ -16,7 +16,9 @@ Repositorio.prototype.Obter = function(nomeColecao, callback) {
         });      
       }
     });
-  });
+  },function(erro){
+    callback(erro, null)
+  });  
 };
 
 Repositorio.prototype.ObterComFiltro = function(nomeColecao, filtro, callback) {

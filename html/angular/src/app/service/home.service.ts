@@ -1,6 +1,7 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { DataService } from './data.service';
+import { Injectable } from '@angular/core';
 import { Home } from "app/model/home.model";
-import { Http, Headers, RequestOptions } from "@angular/http";
+import {Headers } from "@angular/http";
 import * as $ from 'jquery';
 import { HttpInterceptor } from "app/HttpInterceptor";
 
@@ -9,15 +10,15 @@ export class HomeService {
 
     
     
-    constructor(public http: HttpInterceptor) {
+    constructor(public http: HttpInterceptor, private _dataService : DataService) {
     
     }
 
-    getEspecialidade(){
-        return ['Sombrancelhas', 'estética', 'Cabelereiro'];        
+    ObterHome(){
+        return this._dataService.getAll<Home>();
     }
 
-    
+       
     CadastrarInfo(modelo: Home) {
         return this.http.post("Admin/Home/CadastrarHome", modelo);
     }

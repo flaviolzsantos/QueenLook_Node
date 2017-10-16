@@ -1,4 +1,5 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+﻿import { HttpClientModule, HttpClient  } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
@@ -19,6 +20,7 @@ import { QuemSomosComponent } from './quem-somos/quem-somos.component';
 import { HomeService } from "app/service/home.service";
 import { PortifolioService } from "app/service/portifolio.service";
 import { QuemSomosService } from './service/quem-somos.service';
+import { DataService } from './service/data.service';
 
 
 const appRoutes: Routes = [
@@ -50,13 +52,16 @@ const appRoutes: Routes = [
       HttpModule,
       HomeModule,
       BrowserAnimationsModule,
-      ToastModule.forRoot()
+      ToastModule.forRoot(),
+      HttpClientModule
   ],
   providers: [
       HomeService,
       HttpInterceptor,
       PortifolioService,
-      QuemSomosService
+      QuemSomosService,
+      DataService,
+      HttpClient
   ],
   bootstrap: [AppComponent]
 })

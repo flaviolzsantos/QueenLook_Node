@@ -14,9 +14,13 @@ function validarCadastro(estaAtivando, invalidaValidacao, call){
 
 module.exports = function(app, cloudinary){
 
-    app.get('/Admin/Home/ObterListaHome', function(req, res){    
+    app.get('/Home', function(req, res){    
         repositorio.Obter(nomeObjeto,function(erro,lista){
-            res.send(lista);
+            if(erro){
+                res.send({status:500, message: erro});
+                
+            }else
+                res.send({status:200, message: "Salvo com sucesso"});
         })
     });
 

@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, Input, ViewContainerRef, Output } from '@angular/core';
+﻿import { DataService } from './../service/data.service';
+import { Component, OnInit, Input, ViewContainerRef, Output } from '@angular/core';
 import { HomeService } from "app/service/home.service";
 import { Home } from "app/model/home.model";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -14,12 +15,13 @@ export class HomeComponent implements OnInit {
     homeSrv: HomeService;
     
     listaValores: any;
-    constructor(homeService: HomeService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(homeService: HomeService, public toastr: ToastsManager, vcr: ViewContainerRef, private servico : DataService ) {
         
         this.toastr.setRootViewContainerRef(vcr);
 
         this.modelo = new Home();
         this.homeSrv = homeService;
+        this.servico.rotaApi("Home");
     }
 
     public cadastrar() {
@@ -39,7 +41,9 @@ export class HomeComponent implements OnInit {
     }
 
     public ListaValores() {
-        this.listaValores = this.homeSrv.GetInfo();
+        this.servico.getAll<Home[]>().subscribe((data : Home[])=> this.listaValores = data,
+        error => (erro) => console.log(erro));
+        //this.listaValores = this.homeSrv.GetInfo();
 
     }
 
@@ -76,6 +80,27 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit() {
+
+        // $(document).bind("ajaxSend", function(){
+        //     debugger;
+        //     //$(".modalCustom").hide();
+        //     document.getElementById('teste').style.display = "block";
+        //     //$(".modalCustom").hide();
+        //     console.log("inicio");
+        //   }).bind("ajaxComplete", function(){
+        //       debugger;
+        //     //$(".modalCustom").hide();
+        //     //$(".modalCustom").show();
+        //     document.getElementById('teste').style.display = "none"
+        //     console.log("fim");
+        //   });
+
+        
+
+        // $(document).on({
+        //     ajaxStart: function() {$(".modalCustom").show();},
+        //     ajaxStop: function() { $(".modalCustom").hide(); }    
+        // });
         this.ListaValores();
     }
 
