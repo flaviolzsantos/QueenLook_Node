@@ -17,10 +17,11 @@ import { HomeComponent } from './home/home.component';
 import { PortifolioComponent } from './portifolio/portifolio.component';
 import { QuemSomosComponent } from './quem-somos/quem-somos.component';
 
-import { HomeService } from "app/service/home.service";
 import { PortifolioService } from "app/service/portifolio.service";
 import { QuemSomosService } from './service/quem-somos.service';
 import { DataService } from './service/data.service';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 
 
 const appRoutes: Routes = [
@@ -53,10 +54,10 @@ const appRoutes: Routes = [
       HomeModule,
       BrowserAnimationsModule,
       ToastModule.forRoot(),
-      HttpClientModule
+      HttpClientModule,
+      Ng4LoadingSpinnerModule 
   ],
   providers: [
-      HomeService,
       HttpInterceptor,
       PortifolioService,
       QuemSomosService,

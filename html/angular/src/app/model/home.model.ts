@@ -4,4 +4,6 @@
     Conteudo: string = "";
     Ativo: boolean = true;
     Imagem: string = "";
+    Mudou : boolean = false;
+    idFoto : string = "";
 }

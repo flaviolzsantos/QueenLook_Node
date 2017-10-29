@@ -1,5 +1,4 @@
-﻿
-<div class="row">
+﻿<div class="row">
     <div class="col-lg-4 col-md-4">
         <div class="form-group">
             <label>Título</label>
@@ -15,7 +14,7 @@
     <div class="col-lg-4 col-md-4">
       <div class="form-group">
         <label>Imagem</label>
-        <input type="file" name="files" id="imagem" (change)="onChange($event)" class="form-control" />
+        <input type="file"  name="files"  (change)="onChange($event)" class="form-control" />
       </div>
     </div>
     <div class="col-lg-3 col-md-3" style="margin-top:33px;">
@@ -55,7 +54,7 @@
                     </td>
                     <td class="text-right">
                         <div class="btn-group">                            
-                            <a href="javascript:void(0);" (click)="DeletarHome(valor._id)"> 
+                            <a href="javascript:void(0);" (click)="DeletarHome(valor._id, valor.idFoto)"> 
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
                         </div>

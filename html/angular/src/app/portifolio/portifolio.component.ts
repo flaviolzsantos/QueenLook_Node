@@ -4,6 +4,8 @@ import { Portifolio } from "app/model/portifolio.model";
 import {PortifolioItem} from "app/model/portifolioItem.model";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { environment } from '../../environments/environment';
+import { DataService } from './../service/data.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-portifolio',
@@ -15,23 +17,23 @@ export class PortifolioComponent implements OnInit {
   modeloPortifolioItem : PortifolioItem;
   portifolioSrv : PortifolioService;
   listaDePortifolioItem : PortifolioItem[];
-  urlApi : string = environment.apiEndpoint + "cadastrarItemPortifolio";
 
-  constructor(portifolioService: PortifolioService, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+  constructor(portifolioService: PortifolioService, 
+              public toastr: ToastsManager, 
+              vcr: ViewContainerRef,
+              private servico : DataService,
+              private spinnerService: Ng4LoadingSpinnerService) { 
         
     this.toastr.setRootViewContainerRef(vcr);
 
     this.modeloPortifolio = new Portifolio();
     this.modeloPortifolioItem = new PortifolioItem();
     this.portifolioSrv = portifolioService;
+    this.servico.rotaApi("Adm/Portifolio/");
   }
 
   
-  onChange(event) {
-        let files = event.srcElement.files;
-        this.modeloPortifolioItem.Imagem = this.portifolioSrv.PostWithFile(files).nomeArquivo;
-        this.modeloPortifolioItem.Mudou = true;
-    }
+  
 
   ngOnInit() {
     this.Listar();
@@ -43,7 +45,6 @@ export class PortifolioComponent implements OnInit {
   }
 
   public adicionarItem(){
-    //this.modeloPortifolioItem.Mudou = false;
     this.mostrarMensagem(this.portifolioSrv.CadastrarItem(this.modeloPortifolioItem),"Cadastro com sucesso!");
     //this.modeloPortifolioItem.LimparDados();
     this.modeloPortifolioItem._id = "";
@@ -82,6 +83,26 @@ export class PortifolioComponent implements OnInit {
     this.ListarItem();
 
   }
+
+  
+  onChange(event) {
+    this.spinnerService.show();
+    this.servico.postFile(event.srcElement.files).subscribe(data => {
+        this.modeloPortifolioItem.Imagem = data.nomeArquivo;
+        this.spinnerService.hide();
+        this.modeloPortifolioItem.Mudou = true;
+    }, error => this.mostrarErro(error));
+  }
+
+  private mostrarErro(erro : string) : void{
+    this.toastr.error(erro);
+    this.spinnerService.hide();
+  }
+  private mostrarSucesso(mensagem) : void{
+    this.toastr.success(mensagem.mensagem);
+    this.spinnerService.hide();
+  }
+
 
   mostrarMensagem(metodoRetorno: any, mensagem: string) {
         

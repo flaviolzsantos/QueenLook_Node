@@ -1,5 +1,7 @@
 let Repositorio = require('../../../config/repositorio').Repositorio,
-nomeObjeto = "Home";
+nomeObjeto = "Home",
+ObjectID = require("mongodb").ObjectID,
+fs = require('fs');
 
 let repositorio = new Repositorio();
 
@@ -14,70 +16,92 @@ function validarCadastro(estaAtivando, invalidaValidacao, call){
 
 module.exports = function(app, cloudinary){
 
-    app.get('/Home', function(req, res){    
+    app.get('/Adm/Home', function(req, res){    
         repositorio.Obter(nomeObjeto,function(erro,lista){
             if(erro){
                 res.send({status:500, message: erro});
                 
             }else
-                res.send({status:200, message: "Salvo com sucesso"});
+                res.send(lista);
         })
     });
 
-    app.post('/Admin/Home/CadastrarHome',function(req,res){
+    app.delete('/Adm/Home/:id/:idFoto',function(req,res){
+        
+        repositorio.Deletar(ObjectID(req.params.id), nomeObjeto, function(erro, result){
+            if(erro)
+                res.status(500).send(erro);
+            else{
+                cloudinary.uploader.destroy(req.params.idFoto);
+                res.send({"mensagem" : "Deletado com sucesso"});
+            }
+        });
+    });
+
+    app.post('/Adm/Home',function(req,res){
 
         let obj = req.body;
         let call = function(erro){
             if(erro){
-                res.send({status:500, message: erro});
+                res.status(500).send(erro);
             }else
-                res.send({status:200, message: "Salvo com sucesso"});
+                res.send({"mensagem": "Salvo com sucesso"});
         };
         
         validarCadastro(true,(obj["_id"] != ''), function(erro){
+            let cam = app.caminhoImagem + "/" + obj.Imagem;
             if(erro)
                 call(erro);
             else{
                 if(obj["_id"] == ''){//Novo                       
                     obj.Ativo = true;  
-                    let cam = app.caminhoImagem + "/" + obj.Imagem;
+                    
 
-                    let callUpload = function(result){
-                        obj.Imagem = result.url;                         
+                    cloudinary.uploader.upload(cam, function(result) { 
+                        console.log(result);
+                        obj.Imagem = result.url; 
+                        obj.Mudou = false;
+                        obj.idFoto = result.public_id;
+                        fs.unlink(cam);
                         repositorio.Salvar(nomeObjeto,obj,function(ret){
+                            call();
+                        }); 
+                    });                    
+                     
+                }else{
+
+                    if(obj.Mudou){
+
+                        cloudinary.uploader.upload(cam, function(result) { 
+                            
+                            cloudinary.uploader.destroy(obj.idFoto);
+
+                            obj.Imagem = result.url; 
+                            obj.Mudou = false;
+                            obj.idFoto = result.public_id;
+                            fs.unlink(cam);
+                            repositorio.Atualizar(nomeObjeto,obj,function(ret){
+                                call();
+                            }); 
+                        });
+                    }else{
+                        obj.Ativo = (obj.Ativo == 'true');
+                        repositorio.Atualizar(nomeObjeto,obj,function(ret){
                             call();
                         });
                     }
-
-                    cloudinary.upload(cam, callUpload);
-                     
-                }else{
-                    obj.Ativo = (obj.Ativo == 'true');
-                    repositorio.Atualizar(nomeObjeto,obj,function(ret){
-                        call();
-                    })
                 }
             }
         });
     });
-
-    app.delete('/Admin/Home/Deletar',function(req,res){
-        let id = req.body.id;
-        repositorio.Deletar(id, nomeObjeto, function(erro, result){
-            if(erro)
-                res.send({status:500, message: erro});
-            else
-                res.send({status:200, message: "Deletado com sucesso"});
-        });
-    });
-
-    app.post('/Admin/Home/AtivarOuDesativar', function(req, res){
-        let id = req.body.id;
+    
+    app.put('/Adm/Home/AtivaDesativa/:id', function(req, res){
+        let id = ObjectID(req.params.id);
         let call = function(erro, result){
             if(erro)
-                res.send({status:500, message: erro});
+                res.status(500).send(erro);
             else
-                res.send({status:200, message: result}); 
+                res.send({"mensagem" : "Atualizado com sucesso"}); 
         };
 
         repositorio.ObterDocumentoPorId(nomeObjeto, id, function(erro, row){
@@ -93,16 +117,7 @@ module.exports = function(app, cloudinary){
             });
         });
     });
-
-    app.post('/Admin/Home/UploadFile',function(req, res){
-        uploadHome(req, res, function (err) {
-        if (err)
-            res.send({status:500, message :err});
-        else{
-            res.send({status: 200, nomeArquivo : req.file.filename});
-        }
-        });
-    });
+    
 }
 
 
