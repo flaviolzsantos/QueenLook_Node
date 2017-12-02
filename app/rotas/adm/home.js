@@ -38,7 +38,7 @@ module.exports = function(app, cloudinary){
         });
     });
 
-    app.post('/BitPay',function(req,res){
+    app.post('/Adm/BitPay',function(req,res){
         console.log(req);
     });
 
