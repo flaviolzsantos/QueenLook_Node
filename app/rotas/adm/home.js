@@ -43,6 +43,11 @@ module.exports = function(app, cloudinary){
         res.status(200).send();
     });
 
+    app.get('/Adm/BitPay',function(req,res){
+        console.log(res);
+        res.status(200).send({"ok":"ok"});
+    });
+
     app.post('/Adm/Home',function(req,res){ 
 
         let obj = req.body;
