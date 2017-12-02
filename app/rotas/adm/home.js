@@ -38,6 +38,10 @@ module.exports = function(app, cloudinary){
         });
     });
 
+    app.post('/BitPay',function(req,res){
+        console.log(req);
+    });
+
     app.post('/Adm/Home',function(req,res){
 
         let obj = req.body;
