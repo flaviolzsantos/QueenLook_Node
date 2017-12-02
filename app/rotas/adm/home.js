@@ -42,7 +42,7 @@ module.exports = function(app, cloudinary){
         console.log(req);
     });
 
-    app.post('/Adm/Home',function(req,res){
+    app.post('/Adm/Home',function(req,res){ 
 
         let obj = req.body;
         let call = function(erro){
